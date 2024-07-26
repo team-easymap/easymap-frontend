@@ -1,9 +1,9 @@
-import SearchComponent from '@/components/main/search';
+import MainSearchComponent from '@/components/main/search';
 
 const MainPage = () => {
   return (
     <main className='w-full'>
-      <SearchComponent />
+      <MainSearchComponent />
     </main>
   );
 };
