@@ -1,6 +1,10 @@
 ---
-name: 기능
+name: Feat
 about: 기능 관련 이슈
+title: ''
+labels: ''
+assignees: ''
+
 ---
 
 ## 구현 기능
@@ -10,10 +14,8 @@ about: 기능 관련 이슈
 ## 작업 목록
 
 - **작업 상세 내용:**
-  - [ ] &nbsp;
-  - [ ] &nbsp;
-  - [ ] &nbsp;
+  - [ ] Todo 
+  - [ ] Todo 
+  - [ ] Todo 
 
-## 예상 소요 시간
-
-## 추가 정보
+## 추가 comment
