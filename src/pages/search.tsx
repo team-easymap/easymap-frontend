@@ -3,7 +3,7 @@ import SearchHistory from '@/components/search/search-history/search-history';
 
 const SearchPage = () => {
   return (
-    <main className='h-full w-full'>
+    <main className='h-full w-full bg-white'>
       <SearchComponent />
       <SearchHistory />
     </main>
