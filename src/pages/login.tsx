@@ -23,7 +23,7 @@ const login = () => {
         </button>
         <button
           id='kakao-login-btn'
-          className='text-16M flex h-[48px] w-[343px] items-center justify-center rounded-[10px] border-gray-200 font-semibold'>
+          className='text-16M flex h-[48px] w-[343px] items-center justify-center rounded-[10px] border border-[1px] border-[#EEEEEE] font-semibold'>
           <img src={GoogleIcon} />
           <span>Google로 시작하기</span>
         </button>
