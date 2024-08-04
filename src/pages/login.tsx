@@ -29,7 +29,7 @@ const login = () => {
         </button>
         <button
           id='kakao-login-btn'
-          className='text-16M flex h-[48px] w-[343px] items-center justify-center rounded-[10px] bg-[#FFE300] font-semibold'>
+          className='text-16M flex h-[48px] w-[343px] items-center justify-center rounded-[10px] bg-[#212121] font-semibold text-[#FFFFFF]'>
           <img src={AppleIcon} />
           <span>Apple로 시작하기</span>
         </button>
