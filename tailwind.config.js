@@ -44,6 +44,7 @@ module.exports = {
       },
       colors: {
         // 사용법 예시 className='text-gray-0'
+        black: '#1b1b1b',
         gray: {
           0: '#F8F9FA',
           1: '#F1F3F5',
@@ -141,7 +142,8 @@ module.exports = {
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
+        xs: '3px'
       },
       keyframes: {
         'accordion-down': {
