@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { CommonButton } from '../common/commonButton';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 
@@ -10,7 +11,11 @@ const MainSearchComponent = () => {
         placeholder='검색어를 입력해주세요.'
         onFocus={() => navigate('/search')}
       />
-      <Button onClick={() => navigate('/search')}>👉</Button>
+      <CommonButton
+      color='black'
+      use='text'
+      radius='small'
+       onClick={() => navigate('/search')}>길찾기</CommonButton>
     </div>
   );
 };
