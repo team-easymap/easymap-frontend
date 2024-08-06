@@ -30,6 +30,7 @@ import TagsIcon from '@/assets/icons/tags.svg?react';
 import TrashIcon from '@/assets/icons/trash.svg?react';
 import ChevronUpIcon from '@/assets/icons/up.svg?react';
 import WarningIcon from '@/assets/icons/warning.svg?react';
+import CheckIcon from '@/assets/icons/check.svg?react';
 
 type IconProps = {
   name: string;
@@ -68,7 +69,8 @@ const icons = {
   tags: TagsIcon,
   trash: TrashIcon,
   chevronUp: ChevronUpIcon,
-  warning: WarningIcon
+  warning: WarningIcon,
+  check: CheckIcon
 } as { [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement>> };
 
 const IconComponent = (props: IconProps) => {
