@@ -1,11 +1,11 @@
-import IconComponent from "./icon";
-import { Button, type ButtonProps } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { Button, type ButtonProps } from '../ui/button';
+import { cn } from '@/lib/utils';
+import IconComponent from '../ui/icon';
 
 type FooterButtonProps = {
   icon: string;
   title: string;
-  color ?: string;
+  color?: string;
 } & ButtonProps;
 
 const FooterButtonComponent: React.FC<FooterButtonProps> = ({
@@ -15,18 +15,17 @@ const FooterButtonComponent: React.FC<FooterButtonProps> = ({
   className,
   ...buttonProps
 }) => {
-  const iconColors = color === "purple" ? "#A65CF5" : "black"
-  const textColorClass = color === "purple" ? "text-[#A65CF5]" : "text-black";
+  const iconColors = color === 'purple' ? '#A65CF5' : 'black';
+  const textColorClass = color === 'purple' ? 'text-[#A65CF5]' : 'text-black';
 
   return (
     <Button
       className={cn(
-        "w-1/3 h-full bg-transparent flex flex-col justify-center items-center gap-1",
+        'flex h-full w-1/3 flex-col items-center justify-center gap-1 bg-transparent',
         textColorClass,
         className
       )}
-      {...buttonProps}
-    >
+      {...buttonProps}>
       <IconComponent name={icon} color={iconColors} />
       <span>{title}</span>
     </Button>
