@@ -33,7 +33,7 @@ import WarningIcon from '@/assets/icons/warning.svg?react';
 import CheckIcon from '@/assets/icons/check.svg?react';
 
 type IconProps = {
-  name: string;
+  name: keyof typeof icons;
   color?: string;
 };
 
@@ -71,7 +71,7 @@ const icons = {
   chevronUp: ChevronUpIcon,
   warning: WarningIcon,
   check: CheckIcon
-} as { [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement>> };
+} as const;
 
 const IconComponent = (props: IconProps) => {
   const { name, color } = props;
