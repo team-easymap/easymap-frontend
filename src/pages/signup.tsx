@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import TermsModal from '@/components/signup/TermsModal';
+// import TermsModal from '@/components/signup/TermsModal';
 import { Outlet } from 'react-router-dom';
 
 const signup = () => {
@@ -7,7 +7,7 @@ const signup = () => {
     <div>
       <Header title='프로필 등록' prevOnClick={() => console.log('')} />
       <Outlet />
-      <TermsModal />
+      {/* <TermsModal /> */}
     </div>
   );
 };
