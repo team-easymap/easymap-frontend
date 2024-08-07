@@ -1,6 +1,6 @@
+import IconComponent from '@/components/ui/icon';
 import { Button, type ButtonProps } from '../ui/button';
 import { cn } from '@/lib/utils';
-import IconComponent from '../ui/icon';
 
 type FooterButtonProps = {
   icon: string;
