@@ -82,7 +82,7 @@ const IconComponent = (props: IconProps) => {
   }
 
   return (
-    <span style={{ color: color }}>
+    <span className={color}>
       <Icon />
     </span>
   );
