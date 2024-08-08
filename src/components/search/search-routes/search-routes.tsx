@@ -11,11 +11,11 @@ const SearchRoutes = () => {
       <SearchRotateButton />
       <div className='flex w-full flex-col gap-3'>
         <Input
-          onFocus={() => navigate('/search/location')}
+          onFocus={() => navigate('/search/poi')}
           value='내위치: 서울시 성동구 땡땡땡'
         />
         <Input
-          onFocus={() => navigate('/search/location')}
+          onFocus={() => navigate('/search/poi')}
           placeholder='도착지를 입력해주세요'
         />
       </div>

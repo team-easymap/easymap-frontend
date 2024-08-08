@@ -2,12 +2,12 @@ import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 type ChipProps = VariantProps<typeof chipVariants> &
-  React.AllHTMLAttributes<HTMLSpanElement>;
+  React.HTMLAttributes<HTMLSpanElement>;
 
 const chipVariants = cva('rounded-full', {
   variants: {
     variant: {
-      stroke: 'border border-primary',
+      stroke: 'border border-primary text-primary',
       fill: 'border-none bg-blue-0'
     },
     size: {
