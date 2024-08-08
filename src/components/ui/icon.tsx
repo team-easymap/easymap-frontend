@@ -31,6 +31,7 @@ import TrashIcon from '@/assets/icons/trash.svg?react';
 import ChevronUpIcon from '@/assets/icons/up.svg?react';
 import WarningIcon from '@/assets/icons/warning.svg?react';
 import CheckIcon from '@/assets/icons/check.svg?react';
+import StarFillIcon from '@/assets/icons/star-fill.svg?react';
 
 type IconProps = {
   name: keyof typeof icons;
@@ -70,7 +71,8 @@ const icons = {
   trash: TrashIcon,
   chevronUp: ChevronUpIcon,
   warning: WarningIcon,
-  check: CheckIcon
+  check: CheckIcon,
+  starFill: StarFillIcon
 } as const;
 
 const IconComponent = (props: IconProps) => {
@@ -82,7 +84,7 @@ const IconComponent = (props: IconProps) => {
   }
 
   return (
-    <span style={{ color: color }}>
+    <span className={color}>
       <Icon />
     </span>
   );

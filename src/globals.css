@@ -60,10 +60,10 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
-    @apply bg-background text-foreground;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    @apply text-14R text-black;
   }
 }
