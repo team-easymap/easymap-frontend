@@ -8,7 +8,7 @@ const MainSearchComponent = () => {
     <div className='z-[900] flex justify-between gap-3 p-4'>
       <Input
         placeholder='검색어를 입력해주세요.'
-        onFocus={() => navigate('/search/location')}
+        onFocus={() => navigate('/search/poi')}
       />
       <CommonButton
         color='black'

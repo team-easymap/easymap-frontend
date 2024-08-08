@@ -9,7 +9,7 @@ const SearchPage = () => {
 
   return (
     <main className='h-full w-full bg-white'>
-      {location.pathname === '/search/location' ? (
+      {location.pathname === '/search/poi' ? (
         <SearchComponent />
       ) : (
         <SearchRoutes />
