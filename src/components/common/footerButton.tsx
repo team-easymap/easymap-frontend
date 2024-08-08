@@ -1,4 +1,4 @@
-import IconComponent from "./icon";
+import IconComponent from "../ui/icon";
 import { Button, type ButtonProps } from "../ui/button";
 import { cn } from "@/lib/utils";
 
