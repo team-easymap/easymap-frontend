@@ -7,7 +7,6 @@ const MainPage = () => {
     <main className='flex w-full flex-col'>
       <MainHeaderComponent />
       <MainMap />
-      <MyLocationComponent />
     </main>
   );
 };
