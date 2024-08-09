@@ -34,6 +34,7 @@ module.exports = {
         '12M': createFontSize('12px', '500'), // Medium weight
         '14R': createFontSize('14px', '400'), // Regular weight
         '14M': createFontSize('14px', '500'), // Medium weight
+        '14B': createFontSize('14px', '700'), // Bold weight
         '16R': createFontSize('16px', '400'), // Regular weight
         '16M': createFontSize('16px', '500'), // Medium weight
         '18R': createFontSize('18px', '400'), // Regular weight

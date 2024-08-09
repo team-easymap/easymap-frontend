@@ -1,15 +1,13 @@
 import { useLocation } from 'react-router-dom';
-import { MapContainer } from 'react-leaflet';
 import Footer from './footer';
-import { useLocationStore } from '@/store/location';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
-  const withFooterPathnames = ['/', '/user', '/login', '/poi/list'];
+  const withFooterPathnames = ['/', '/user', '/login', '/pois'];
 
   return (
-    <div className='flex h-dvh w-screen flex-col items-center justify-center'>
-      <div className='relative h-full w-full max-w-[375px] border border-x-2'>
+    <div className='flex flex-col items-center justify-center w-screen h-dvh bg-primary/10'>
+      <div className='relative h-full w-full max-w-[375px] border border-y-0 border-gray-2 bg-white'>
         {pathname === '/' ? (
           <>
             {children}
