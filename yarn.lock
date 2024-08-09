@@ -561,6 +561,13 @@
   resolved "https://registry.npmjs.org/@radix-ui/primitive/-/primitive-1.1.0.tgz"
   integrity sha512-4Z8dn6Upk0qk4P74xBhZ6Hd/w0mPEzOOLxy4xiPXOXqjF7jZS0VAKk7/x/H6FyY2zCkYJqePf1G5KmkmNJ4RBA==
 
+"@radix-ui/react-aspect-ratio@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-aspect-ratio/-/react-aspect-ratio-1.1.0.tgz#b646d044420a63046ad794db1efa3001c4be24ef"
+  integrity sha512-dP87DM/Y7jFlPgUZTlhx6FF5CEzOiaxp2rBCKlaXlpH5Ip/9Fg5zZ9lDOQ5o/MOfUlf36eak14zoWYpgcgGoOg==
+  dependencies:
+    "@radix-ui/react-primitive" "2.0.0"
+
 "@radix-ui/react-checkbox@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npmjs.org/@radix-ui/react-checkbox/-/react-checkbox-1.1.1.tgz"
@@ -1378,7 +1385,7 @@ eastasianwidth@^0.2.0:
     "@radix-ui/react-slot" "^1.1.0"
     class-variance-authority "^0.7.0"
     clsx "^2.1.1"
-    easymap-frontend "file:../../../Library/Caches/Yarn/v6/npm-easymap-frontend-0.0.0-24a7e3fd-83a7-4e36-94e8-b4ed7629ebe5-1723187734812/node_modules/easymap-frontend"
+    easymap-frontend "file:../../../Library/Caches/Yarn/v6/npm-easymap-frontend-0.0.0-c4888310-9b28-4b6d-8d8b-a1249cf01f32-1723198892059/node_modules/easymap-frontend"
     leaflet "^1.9.4"
     lucide-react "^0.408.0"
     prettier "^3.3.2"

@@ -11,6 +11,7 @@ const customTwMerge = extendTailwindMerge({
             '12M',
             '14R',
             '14M',
+            '14B',
             '16R',
             '16M',
             '18R',
