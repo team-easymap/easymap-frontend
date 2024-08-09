@@ -12,6 +12,7 @@ import UserInfoForm from '@/components/signup/UserInfoForm';
 import ProfileDetailsForm from '@/components/signup/ProfileDetailsForm';
 import TermsForm from '@/components/signup/TermsForm';
 import POIPage from '@/pages/poi';
+import POIListPage from '@/pages/poi-list';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +22,8 @@ const router = createBrowserRouter(
         <Route path='/search/poi' element={<SearchPage />} />
         <Route path='/search/routes' element={<SearchPage />} />
         <Route path='login' element={<LoginPage />} />
-        <Route path='/poi/:id' element={<POIPage />} />
+        <Route path='/pois' element={<POIListPage />} />
+        <Route path='/pois/:id' element={<POIPage />} />
       </Route>
       <Route path='/signup' element={<SignupPage />}>
         <Route index element={<UserInfoForm />} />
