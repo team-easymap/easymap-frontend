@@ -1,10 +1,11 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import * as L from 'leaflet';
 import { useLocationStore } from '@/store/location';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import MyLocationComponent from './location';
-import MyMarker from './myMarker';
 import 'leaflet/dist/leaflet.css';
+import PoiMarker from './poiMarker';
+import MapMarker from '../common/mapMarker';
 
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
@@ -31,7 +32,7 @@ const MainMap = () => {
         }
       );
     } else {
-      alert('Geolocation is not supported by this browser.');
+      alert('현 위치 받아오기 에러 ');
     }
   }, []);
 
@@ -50,7 +51,8 @@ const MainMap = () => {
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
         />
-        <MyMarker />
+        <PoiMarker />
+        <MapMarker location={myLocation} name='smile' />
         <MyLocationComponent />
       </MapContainer>
     );
