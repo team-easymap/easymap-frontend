@@ -36,6 +36,7 @@ import StarFillIcon from '@/assets/icons/star-fill.svg?react';
 type IconProps = {
   name: keyof typeof icons;
   color?: string;
+  size?: 'sm' | 'md';
 };
 
 const icons = {
@@ -76,16 +77,18 @@ const icons = {
 } as const;
 
 const IconComponent = (props: IconProps) => {
-  const { name, color } = props;
+  const { name, color, size = 'md' } = props;
   const Icon = icons[name];
 
   if (!Icon) {
     return null;
   }
 
+  const iconSize = size === 'sm' ? 'w-4 h-4' : 'w-6 h-6';
+
   return (
     <span className={color}>
-      <Icon />
+      <Icon className={iconSize} />
     </span>
   );
 };
