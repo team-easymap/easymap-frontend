@@ -20,7 +20,7 @@ const SearchPage = () => {
   }, [debouncedValue]);
 
   return (
-    <main className='h-full w-full bg-white'>
+    <main className='flex h-full w-full flex-col bg-white'>
       {location.pathname === '/search/poi' ? (
         <SearchComponent
           searchValue={searchValue}
