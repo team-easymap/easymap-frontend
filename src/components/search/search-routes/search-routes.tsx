@@ -19,7 +19,7 @@ const SearchRoutes = () => {
           placeholder='도착지를 입력해주세요'
         />
       </div>
-      <Button variant='ghost' size='icon'>
+      <Button variant='ghost' size='icon' onClick={() => navigate('/')}>
         <IconComponent name='close' />
       </Button>
     </div>
