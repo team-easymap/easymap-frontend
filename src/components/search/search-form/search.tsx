@@ -3,26 +3,26 @@ import { Button } from '../../ui/button';
 import SearchClearButton from './search-clear-button';
 import SearchForm from './search-form';
 import IconComponent from '@/components/ui/icon';
-import { useRef } from 'react';
 
-const SearchComponent = () => {
+type SearchComponentProps = {
+  searchValue: string;
+  handleValueChange: (value: string) => void;
+};
+
+const SearchComponent = (props: SearchComponentProps) => {
+  const { handleValueChange, searchValue } = props;
   const navigate = useNavigate();
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleValueReset = () => {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
-  };
 
   return (
     <div className='relative flex justify-between gap-3 p-4'>
       <Button variant='ghost' size='icon' onClick={() => navigate('/')}>
         <IconComponent name='chevronLeft' />
       </Button>
-      <SearchForm ref={inputRef} />
-      <SearchClearButton onClear={handleValueReset} />
+      <SearchForm
+        searchValue={searchValue}
+        handleValueChange={handleValueChange}
+      />
+      <SearchClearButton onClear={() => handleValueChange('')} />
     </div>
   );
 };

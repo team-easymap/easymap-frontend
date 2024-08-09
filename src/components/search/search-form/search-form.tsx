@@ -1,24 +1,22 @@
 import { Input } from '@/components/ui/input';
-import { useDebounce } from '@/hooks/common/useDebounce';
-import { forwardRef, useEffect, useState } from 'react';
 
-const SearchForm = forwardRef<HTMLInputElement>((props, ref) => {
-  const [value, setValue] = useState('');
-  const debouncedValue = useDebounce(value, 300);
+type SearchFormProps = {
+  handleValueChange: (value: string) => void;
+  searchValue: string;
+};
 
-  useEffect(() => {
-    console.log(debouncedValue);
-  }, [debouncedValue]);
+const SearchForm = (props: SearchFormProps) => {
+  const { handleValueChange, searchValue } = props;
 
   return (
     <form className='flex-1'>
       <Input
-        ref={ref}
         className='border-gray-3'
-        onChange={(e) => setValue(e.target.value)}
+        value={searchValue}
+        onChange={(e) => handleValueChange(e.target.value)}
       />
     </form>
   );
-});
+};
 
 export default SearchForm;
