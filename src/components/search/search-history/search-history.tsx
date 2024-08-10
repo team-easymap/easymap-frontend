@@ -3,13 +3,19 @@ import SearchHistoryList from './search-history-list';
 import SearchHistoryEmpty from './history-empty';
 import { useState } from 'react';
 
-const SearchHistory = () => {
-  const list = JSON.parse(localStorage.getItem('search-locate') || '[]');
+type SearchHistoryProps = {
+  searchType: 'poi' | 'start' | 'end';
+};
+
+const SearchHistory = (props: SearchHistoryProps) => {
+  const { searchType } = props;
+  const historyKey = searchType === 'poi' ? 'search-locate' : 'search-routes';
+  const list = JSON.parse(localStorage.getItem(historyKey) || '[]');
   const [historyList, setHistoryList] = useState(list);
 
   const handleValueDelete = (id?: number, name?: string) => {
     if (!id) {
-      localStorage.setItem('search-locate', JSON.stringify([]));
+      localStorage.setItem(historyKey, JSON.stringify([]));
       setHistoryList([]);
     } else {
       const filtered = list.filter(
@@ -18,7 +24,7 @@ const SearchHistory = () => {
       if (list.length !== historyList.length) {
         filtered.push({ id, name });
       }
-      localStorage.setItem('search-locate', JSON.stringify(filtered));
+      localStorage.setItem(historyKey, JSON.stringify(filtered));
       setHistoryList(filtered);
     }
   };

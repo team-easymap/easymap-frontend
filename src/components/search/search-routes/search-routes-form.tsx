@@ -1,5 +1,5 @@
 import { Input } from '@/components/ui/input';
-import { SearchRoutesValueType } from '@/pages/search';
+import { SearchRoutesValueType } from '@/pages/search-routes';
 import { useNavigate } from 'react-router-dom';
 
 type SearchRoutesFormProps = {

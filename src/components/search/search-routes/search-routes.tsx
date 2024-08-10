@@ -3,19 +3,21 @@ import { Button } from '@/components/ui/button';
 import IconComponent from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import SearchRoutesForm from './search-routes-form';
-import { SearchRoutesValueType } from '@/pages/search';
+import { SearchRoutesValueType } from '@/pages/search-routes';
 
 type SearchRoutesProps = {
   handleRoutesValue: (v: SearchRoutesValueType) => void;
   value: SearchRoutesValueType;
+  myLocation: string;
 };
 
 const SearchRoutes = (props: SearchRoutesProps) => {
-  const { handleRoutesValue, value } = props;
+  const { handleRoutesValue, value, myLocation } = props;
   const navigate = useNavigate();
 
   const handleRotate = () => {
-    handleRoutesValue({ ...value, start: value.end, end: value.start });
+    const rotated = { ...value, start: value.end, end: value.start };
+    handleRoutesValue(rotated);
   };
 
   return (
@@ -26,7 +28,9 @@ const SearchRoutes = (props: SearchRoutesProps) => {
         variant='ghost'
         size='icon'
         onClick={() => {
-          handleRoutesValue({});
+          handleRoutesValue({
+            start: { id: 0, name: `내 위치: ${myLocation}` }
+          });
           navigate('/');
         }}>
         <IconComponent name='close' />
