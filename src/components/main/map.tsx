@@ -6,7 +6,6 @@ import MyLocationComponent from './location';
 import 'leaflet/dist/leaflet.css';
 import PoiMarker from './poiMarker';
 import MapMarker from '../common/mapMarker';
-
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
