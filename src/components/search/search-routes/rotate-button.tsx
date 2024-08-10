@@ -1,9 +1,14 @@
 import { Button } from '@/components/ui/button';
 import IconComponent from '@/components/ui/icon';
 
-const SearchRotateButton = () => {
+type SearchRotateButtonProps = {
+  handleRotate: () => void;
+};
+
+const SearchRotateButton = (props: SearchRotateButtonProps) => {
+  const { handleRotate } = props;
   return (
-    <Button variant='ghost' size='icon'>
+    <Button variant='ghost' size='icon' onClick={handleRotate}>
       <IconComponent name='arrowUpDown' />
     </Button>
   );

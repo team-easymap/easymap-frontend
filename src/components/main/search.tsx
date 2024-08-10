@@ -5,11 +5,11 @@ import { Input } from '../ui/input';
 const MainSearchComponent = () => {
   const navigate = useNavigate();
   return (
-    <div className='mb-3 flex h-9 w-full justify-between gap-3'>
+    <div className='flex justify-between w-full gap-3 mb-3 h-9'>
       <Input
         className='h-full'
         placeholder='검색어를 입력해주세요.'
-        onFocus={() => navigate('/search/poi')}
+        onFocus={() => navigate('/search/poi', { state: { type: 'poi' } })}
       />
       <CommonButton
         color='black'

@@ -9,7 +9,7 @@ const SearchForm = (props: SearchFormProps) => {
   const { handleValueChange, searchValue } = props;
 
   return (
-    <form className='flex-1'>
+    <form className='flex-1' onSubmit={(e) => e.preventDefault()}>
       <Input
         className='border-gray-3'
         value={searchValue}

@@ -15,7 +15,7 @@ const SearchComponent = (props: SearchComponentProps) => {
 
   return (
     <div className='relative flex justify-between gap-3 p-4'>
-      <Button variant='ghost' size='icon' onClick={() => navigate('/')}>
+      <Button variant='ghost' size='icon' onClick={() => navigate(-1)}>
         <IconComponent name='chevronLeft' />
       </Button>
       <SearchForm
