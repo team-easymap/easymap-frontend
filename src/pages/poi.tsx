@@ -11,7 +11,7 @@ const POIPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Header title='' prevOnClick={() => navigate('/')} />
+      <Header title='' prevOnClick={() => navigate(-1)} />
       <main className='h-[calc(100dvh-58px)] overflow-y-auto'>
         <POIDescription />
         <POIButtons />
