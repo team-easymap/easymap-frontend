@@ -1,36 +1,45 @@
 import SearchRotateButton from './rotate-button';
 import { Button } from '@/components/ui/button';
 import IconComponent from '@/components/ui/icon';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SearchRoutesForm from './search-routes-form';
+import { useEffect } from 'react';
 import { SearchRoutesValueType } from '@/pages/search-routes';
 
 type SearchRoutesProps = {
-  handleRoutesValue: (v: SearchRoutesValueType) => void;
-  value: SearchRoutesValueType;
-  myLocation: string;
+  searchRoutesValue: SearchRoutesValueType;
+  handleSearchRoutesValue: (value: SearchRoutesValueType) => void;
 };
 
 const SearchRoutes = (props: SearchRoutesProps) => {
-  const { handleRoutesValue, value, myLocation } = props;
+  const { searchRoutesValue, handleSearchRoutesValue } = props;
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      handleSearchRoutesValue({ ...searchRoutesValue, ...location.state });
+    }
+  }, [location.state]);
 
   const handleRotate = () => {
-    const rotated = { ...value, start: value.end, end: value.start };
-    handleRoutesValue(rotated);
+    const rotated = {
+      ...searchRoutesValue,
+      start: searchRoutesValue.end,
+      end: searchRoutesValue.start
+    };
+    handleSearchRoutesValue(rotated);
   };
 
   return (
     <div className='flex gap-3 px-3 py-4'>
       <SearchRotateButton handleRotate={handleRotate} />
-      <SearchRoutesForm value={value} />
+      <SearchRoutesForm value={searchRoutesValue} />
       <Button
         variant='ghost'
         size='icon'
         onClick={() => {
-          handleRoutesValue({
-            start: { id: 0, name: `내 위치: ${myLocation}` }
-          });
+          handleSearchRoutesValue({});
           navigate('/');
         }}>
         <IconComponent name='close' />
