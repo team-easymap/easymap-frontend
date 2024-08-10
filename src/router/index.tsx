@@ -13,6 +13,7 @@ import ProfileDetailsForm from '@/components/signup/ProfileDetailsForm';
 import TermsForm from '@/components/signup/TermsForm';
 import POIPage from '@/pages/poi';
 import POIListPage from '@/pages/poi-list';
+import SearchRoutesPage from '@/pages/search-routes';
 import PoiModifyPage from '@/pages/poi-modify';
 
 const router = createBrowserRouter(
@@ -21,7 +22,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<App />}>
         <Route index element={<MainPage />} />
         <Route path='/search/poi' element={<SearchPage />} />
-        <Route path='/search/routes' element={<SearchPage />} />
+        <Route path='/search/routes' element={<SearchRoutesPage />} />
         <Route path='login' element={<LoginPage />} />
         <Route path='/pois' element={<POIListPage />} />
         <Route path='/pois/:id' element={<POIPage />} />

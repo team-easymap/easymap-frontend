@@ -3,8 +3,8 @@ export const searchResult = [
     poi_id: 108,
     poi_name: '왕십리역1',
     poi_address: '서울시 성동구 왕십리로 345',
-    lat: 37.561,  // Approximate latitude of Wangsimni Station
-    lon: 127.038  // Approximate longitude of Wangsimni Station
+    lat: 37.561, // Approximate latitude of Wangsimni Station
+    lon: 127.038 // Approximate longitude of Wangsimni Station
   },
   {
     poi_id: 109,
@@ -67,6 +67,34 @@ export const searchResult = [
   }
 ];
 
+export const searchRoutesResult = [
+  {
+    type: 'fastest',
+    distance: 1812,
+    slope: 1.2,
+    time_required: '01:13:00',
+    list: [
+      { lat: 37.5665, lng: 126.978 },
+      { lat: 37.57, lng: 126.9769 },
+      { lat: 37.5786, lng: 126.9769 },
+      { lat: 37.5704, lng: 126.988 },
+      { lat: 37.5512, lng: 126.9882 }
+    ]
+  },
+  {
+    type: 'fastest2',
+    distance: 1812,
+    slope: 1.2,
+    time_required: '01:13:00',
+    list: [
+      { lat: 37.5665, lng: 126.978 },
+      { lat: 37.57, lng: 126.9769 },
+      { lat: 37.5786, lng: 126.9769 },
+      { lat: 37.5704, lng: 126.988 },
+      { lat: 37.5512, lng: 126.9882 }
+    ]
+  }
+];
 
 export const getRandomSearchResult = () => {
   const firstRandomIdx = Math.floor(Math.random() * searchResult.length);

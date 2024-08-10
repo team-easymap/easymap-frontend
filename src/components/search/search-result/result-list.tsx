@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 type SearchResultListProps = {
   list: SearchResult[];
-  searchType: 'poi' | 'start' | 'end';
+  searchType: 'poi' | 'routes';
 };
 
 const SearchResultList = (props: SearchResultListProps) => {
