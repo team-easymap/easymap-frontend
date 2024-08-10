@@ -1,6 +1,7 @@
-import SearchRoutesResult from '@/components/search-routes/routes-result';
+import SearchRoutesResult from '@/components/search-routes/result/routes-result';
 import SearchRoutes from '@/components/search-routes/form/search-routes';
 import { useMemo, useState } from 'react';
+import SearchHistory from '@/components/search/search-history/search-history';
 
 export type SearchRoutesValueType = {
   start?: { id: number; name: string };
@@ -32,7 +33,7 @@ const SearchRoutesPage = () => {
       {searchRoutesValue.start && searchRoutesValue.end ? (
         <SearchRoutesResult searchRoutesValue={searchRoutesValue} />
       ) : (
-        <></>
+        <SearchHistory searchType='routes' />
       )}
     </main>
   );

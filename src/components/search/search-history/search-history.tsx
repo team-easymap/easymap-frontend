@@ -4,7 +4,7 @@ import SearchHistoryEmpty from './history-empty';
 import { useState } from 'react';
 
 type SearchHistoryProps = {
-  searchType: 'poi' | 'start' | 'end';
+  searchType: 'poi' | 'routes';
 };
 
 const SearchHistory = (props: SearchHistoryProps) => {
