@@ -16,7 +16,7 @@ const SearchResultList = (props: SearchResultListProps) => {
     const history = JSON.parse(localStorage.getItem('search-locate') || '[]');
     const searchValue = {
       id: poi.poi_id,
-      value: poi.poi_name
+      name: poi.poi_name
     };
 
     localStorage.setItem(
