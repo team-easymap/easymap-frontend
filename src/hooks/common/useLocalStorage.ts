@@ -1,36 +1,24 @@
-import { useCallback } from 'react';
-
 export const useLocalStorage = <T>(storageKey: string) => {
-  const filteredList = useCallback(
-    (key: keyof T, value: T[keyof T]) => {
-      const itemList: T[] = JSON.parse(
-        localStorage.getItem(storageKey) || '[]'
-      );
-      return itemList.filter((item) => item[key] !== value);
-    },
-    [storageKey]
-  );
+  const init: T[] = JSON.parse(localStorage.getItem(storageKey) || '[]');
 
-  const updateStorage = useCallback(
-    (itemKey: keyof T, item: T) => {
-      const filtered = filteredList(itemKey, item[itemKey]);
-      filtered.push(item);
+  const updateStorage = (itemKey: keyof T, item: T) => {
+    const filtered = init.filter((p) => p[itemKey] !== item[itemKey]);
+    filtered.push(item);
+    localStorage.setItem(storageKey, JSON.stringify(filtered));
+
+    return filtered;
+  };
+
+  const editStorage = (itemKey?: keyof T, itemValue?: T[keyof T]) => {
+    if (itemKey && itemValue) {
+      const filtered = init.filter((p) => p[itemKey] !== itemValue);
       localStorage.setItem(storageKey, JSON.stringify(filtered));
-    },
-    [filteredList, storageKey]
-  );
-
-  const editStorage = useCallback(
-    (itemKey?: keyof T, itemValue?: T[keyof T]) => {
-      if (itemKey && itemValue) {
-        const filtered = filteredList(itemKey, itemValue);
-        localStorage.setItem(storageKey, JSON.stringify(filtered));
-      } else {
-        localStorage.setItem(storageKey, '[]');
-      }
-    },
-    [filteredList, storageKey]
-  );
+      return filtered;
+    } else {
+      localStorage.setItem(storageKey, '[]');
+      return [];
+    }
+  };
 
   return { updateStorage, editStorage };
 };

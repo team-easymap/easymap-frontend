@@ -1,25 +1,31 @@
 import { Button } from '@/components/ui/button';
 import SearchHistoryList from './search-history-list';
 import SearchHistoryEmpty from './history-empty';
+import { SearchLocateValueType } from '@/pages/search';
 import { useState } from 'react';
-import { useLocalStorage } from '@/hooks/common/useLocalStorage';
 
-const SearchHistory = () => {
+type SearchLocateHistoryProps = {
+  searchType: 'poi' | 'routes';
+  editSearchHistory: (
+    itemKey?: keyof SearchLocateValueType,
+    itemValue?: SearchLocateValueType[keyof SearchLocateValueType]
+  ) => void;
+};
+
+const SearchLocateHistory = (props: SearchLocateHistoryProps) => {
+  const { editSearchHistory } = props;
   const list = JSON.parse(localStorage.getItem('search-locate') || '[]');
-  const [historyList, setHistoryList] = useState(list);
-  const { editStorage } =
-    useLocalStorage<(typeof list)['number']>('search-locate');
+  const [historyList, setHistoryList] = useState<SearchLocateValueType[]>(list);
 
   const handleValueDelete = (id?: number) => {
-    if (!id) {
-      editStorage();
-      setHistoryList([]);
+    if (id) {
+      setHistoryList((prev) => prev.filter((i) => i.id !== id));
+      editSearchHistory('id', id);
     } else {
-      setHistoryList((prev: (typeof list)['number']) => prev.id !== id);
-      editStorage('id', id);
+      setHistoryList([]);
+      editSearchHistory();
     }
   };
-
   return (
     <>
       <section className='flex items-center justify-between p-2'>
@@ -45,4 +51,4 @@ const SearchHistory = () => {
   );
 };
 
-export default SearchHistory;
+export default SearchLocateHistory;
