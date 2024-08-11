@@ -1,4 +1,4 @@
-import PoiModifyComponent from '@/components/poi/modify/modify';
+import PoiModifyComponent from '@/components/poi/modify/poi-modify';
 
 const PoiModifyPage = () => {
   return (

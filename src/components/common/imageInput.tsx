@@ -1,10 +1,13 @@
 import CommonImage from '@/components/common/commonImage';
 import { useCallback } from 'react';
-import { useState } from 'react';
 import { useRef } from 'react';
 
-const ImageInput = () => {
-  const [imgFile, setImgFile] = useState([]);
+type ImageProps = {
+  imgFile: string[];
+  setImgFile: (img: string[]) => void;
+};
+const ImageInput = (props: ImageProps) => {
+  const { imgFile, setImgFile } = props;
   const imgRef = useRef();
 
   const saveImgFile = useCallback(
