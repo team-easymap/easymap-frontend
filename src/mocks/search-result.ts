@@ -85,7 +85,20 @@ export const searchRoutesResult = [
     type: 'fastest2',
     distance: 1812,
     slope: 1.2,
-    time_required: '01:13:00',
+    time_required: '0:14:30',
+    list: [
+      { lat: 37.5665, lng: 126.978 },
+      { lat: 37.57, lng: 126.9769 },
+      { lat: 37.5786, lng: 126.9769 },
+      { lat: 37.5704, lng: 126.988 },
+      { lat: 37.5512, lng: 126.9882 }
+    ]
+  },
+  {
+    type: 'fastest3',
+    distance: 1812,
+    slope: 1.2,
+    time_required: '02:00:08',
     list: [
       { lat: 37.5665, lng: 126.978 },
       { lat: 37.57, lng: 126.9769 },

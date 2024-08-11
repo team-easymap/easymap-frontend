@@ -1,36 +1,37 @@
 import EmptyListComponent from '@/components/common/empty-list';
 import { Separator } from '@/components/ui/separator';
+import { SearchLocateValueType } from '@/pages/search';
 import { SearchResult } from '@/types/pois';
 import { useNavigate } from 'react-router-dom';
 
 type SearchResultListProps = {
   list: SearchResult[];
-  searchType: 'poi' | 'routes';
+  searchType: 'poi' | 'start' | 'end';
+  updateSearchHistory: (
+    itemKey: keyof SearchLocateValueType,
+    item: SearchLocateValueType
+  ) => void;
 };
 
 const SearchResultList = (props: SearchResultListProps) => {
-  const { list, searchType } = props;
+  const { list, searchType, updateSearchHistory } = props;
   const navigate = useNavigate();
 
   const handlePOIClick = (poi: (typeof list)[number]) => {
-    const history = JSON.parse(localStorage.getItem('search-locate') || '[]');
-    const searchValue = {
-      id: poi.poi_id,
-      name: poi.poi_name
-    };
-
-    localStorage.setItem(
-      'search-locate',
-      JSON.stringify([...history, searchValue])
-    );
-
-    searchType === 'poi'
-      ? navigate(`/pois/${poi.poi_id}`)
-      : navigate('/search/routes', {
-          state: {
-            [searchType]: { id: poi.poi_id, name: poi.poi_name }
-          }
-        });
+    if (poi.poi_id) {
+      const searchValue = {
+        id: poi.poi_id,
+        name: poi.poi_name!
+      };
+      updateSearchHistory('id', searchValue);
+      searchType === 'poi'
+        ? navigate(`/pois/${poi.poi_id}`)
+        : navigate('/search/routes', {
+            state: {
+              [searchType]: { id: poi.poi_id, name: poi.poi_name }
+            }
+          });
+    }
   };
 
   return (
