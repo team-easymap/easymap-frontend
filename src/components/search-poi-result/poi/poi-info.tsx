@@ -13,7 +13,7 @@ const SearchPOIResultInfo = (props: SearchPOIResultInfoProps) => {
     poi_point_ally
   } = props;
   return (
-    <div className='p-4'>
+    <div className='p-4 pb-2'>
       <section className='relative flex flex-col gap-2 mb-2'>
         <h2 className='text-18M'>{poi_name}</h2>
         <p className='text-14M'>{poi_address}</p>
