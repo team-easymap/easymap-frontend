@@ -28,7 +28,7 @@ const POIListComponent = () => {
             <h2 className='text-14M'>땡땡이네</h2>
             <ChipComponent>! TEXT !</ChipComponent>
           </section>
-          <POIRatingComponent {...item} />
+          <POIRatingComponent {...item} size='sm' />
         </li>
       ))}
     </ul>

@@ -25,7 +25,7 @@ const SearchResultList = (props: SearchResultListProps) => {
       };
       updateSearchHistory('id', searchValue);
       searchType === 'poi'
-        ? navigate(`/pois/${poi.poi_id}`)
+        ? navigate(`/search/poi/${poi.poi_id}`)
         : navigate('/search/routes', {
             state: {
               [searchType]: { id: poi.poi_id, name: poi.poi_name }
