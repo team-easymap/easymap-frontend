@@ -16,7 +16,7 @@ const SearchHistoryList = (props: SearchHistoryProps) => {
       {list.map((item) => (
         <React.Fragment key={item.id}>
           <li className='flex items-center gap-3 px-4 py-2'>
-            <IconComponent name='mapPin' color='text-gray-6' />
+            <IconComponent name='search' color='text-gray-6' />
             <span className='flex-1 text-14M'>{item.name}</span>
             <Button
               variant='ghost'

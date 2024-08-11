@@ -2,6 +2,7 @@ import SearchRoutesResult from '@/components/search-routes/result/routes-result'
 import SearchRoutes from '@/components/search-routes/form/search-routes';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from '@/hooks/common/useLocalStorage';
+import SearchLocateHistory from '@/components/search/search-history/search-history';
 
 export type SearchRoutesValueType = {
   start?: { id: number; name: string };
@@ -43,7 +44,7 @@ const SearchRoutesPage = () => {
       {searchRoutesValue.start && searchRoutesValue.end ? (
         <SearchRoutesResult searchRoutesValue={searchRoutesValue} />
       ) : (
-        <></>
+        <SearchLocateHistory searchType='start' editSearchHistory={() => {}} />
       )}
     </main>
   );

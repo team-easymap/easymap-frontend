@@ -5,7 +5,7 @@ import { SearchLocateValueType } from '@/pages/search';
 import { useState } from 'react';
 
 type SearchLocateHistoryProps = {
-  searchType: 'poi' | 'routes';
+  searchType: 'poi' | 'start' | 'end';
   editSearchHistory: (
     itemKey?: keyof SearchLocateValueType,
     itemValue?: SearchLocateValueType[keyof SearchLocateValueType]

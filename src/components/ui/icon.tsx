@@ -32,6 +32,7 @@ import ChevronUpIcon from '@/assets/icons/up.svg?react';
 import WarningIcon from '@/assets/icons/warning.svg?react';
 import CheckIcon from '@/assets/icons/check.svg?react';
 import StarFillIcon from '@/assets/icons/star-fill.svg?react';
+import SearchIcon from '@/assets/icons/search.svg?react';
 
 type IconProps = {
   name: keyof typeof icons;
@@ -73,7 +74,8 @@ const icons = {
   chevronUp: ChevronUpIcon,
   warning: WarningIcon,
   check: CheckIcon,
-  starFill: StarFillIcon
+  starFill: StarFillIcon,
+  search: SearchIcon
 } as const;
 
 const IconComponent = (props: IconProps) => {

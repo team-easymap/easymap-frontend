@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 type SearchResultListProps = {
   list: SearchResult[];
-  searchType: 'poi' | 'routes';
+  searchType: 'poi' | 'start' | 'end';
   updateSearchHistory: (
     itemKey: keyof SearchLocateValueType,
     item: SearchLocateValueType
