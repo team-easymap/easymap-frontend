@@ -3,7 +3,7 @@ export const mockPOI = {
   poi_name: '모모 식당',
   poi_address: '서울시 강남구 강남대로 145-13',
   user_id: 1,
-  poi_point_avg: 8,
+  poi_point_avg: 3,
   poi_point_count: 10,
   poi_point_ally: 13,
   poi_category: {
