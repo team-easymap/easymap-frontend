@@ -5,7 +5,7 @@ import * as React from 'react';
 
 type SearchHistoryProps = {
   list: { id: number; name: string }[];
-  handleValueDelete: (id: number, name: string) => void;
+  handleValueDelete: (id: number) => void;
 };
 
 const SearchHistoryList = (props: SearchHistoryProps) => {
@@ -21,7 +21,7 @@ const SearchHistoryList = (props: SearchHistoryProps) => {
             <Button
               variant='ghost'
               size='icon'
-              onClick={() => handleValueDelete(item.id, item.name)}>
+              onClick={() => handleValueDelete(item.id)}>
               <IconComponent name='close' />
             </Button>
           </li>

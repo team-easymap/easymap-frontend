@@ -9,7 +9,6 @@ type SearchRoutesResultProps = {
 
 const SearchRoutesResult = (props: SearchRoutesResultProps) => {
   const { searchRoutesValue } = props;
-  console.log(searchRoutesValue);
 
   return (
     <div className='relative flex flex-col'>

@@ -1,7 +1,7 @@
 import SearchRoutesResult from '@/components/search-routes/result/routes-result';
 import SearchRoutes from '@/components/search-routes/form/search-routes';
-import { useMemo, useState } from 'react';
-import SearchHistory from '@/components/search/search-history/search-history';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocalStorage } from '@/hooks/common/useLocalStorage';
 
 export type SearchRoutesValueType = {
   start?: { id: number; name: string };
@@ -19,6 +19,16 @@ const SearchRoutesPage = () => {
   );
   const [searchRoutesValue, setSearchRoutesValue] =
     useState<SearchRoutesValueType>(routesValue || initValue);
+  const { updateStorage } = useLocalStorage<{
+    storageKey: string & SearchRoutesValueType;
+  }>('search-routes');
+
+  useEffect(() => {
+    if (searchRoutesValue.start && searchRoutesValue.end) {
+      const storageKey = `start:${searchRoutesValue.start.id}-end:${searchRoutesValue.end.id}`;
+      updateStorage('storageKey', { storageKey, ...searchRoutesValue });
+    }
+  }, [searchRoutesValue, updateStorage]);
 
   return (
     <main className='flex flex-col'>
@@ -33,7 +43,7 @@ const SearchRoutesPage = () => {
       {searchRoutesValue.start && searchRoutesValue.end ? (
         <SearchRoutesResult searchRoutesValue={searchRoutesValue} />
       ) : (
-        <SearchHistory searchType='routes' />
+        <></>
       )}
     </main>
   );

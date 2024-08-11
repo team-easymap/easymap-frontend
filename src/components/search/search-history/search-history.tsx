@@ -2,30 +2,21 @@ import { Button } from '@/components/ui/button';
 import SearchHistoryList from './search-history-list';
 import SearchHistoryEmpty from './history-empty';
 import { useState } from 'react';
+import { useLocalStorage } from '@/hooks/common/useLocalStorage';
 
-type SearchHistoryProps = {
-  searchType: 'poi' | 'routes';
-};
-
-const SearchHistory = (props: SearchHistoryProps) => {
-  const { searchType } = props;
-  const historyKey = searchType === 'poi' ? 'search-locate' : 'search-routes';
-  const list = JSON.parse(localStorage.getItem(historyKey) || '[]');
+const SearchHistory = () => {
+  const list = JSON.parse(localStorage.getItem('search-locate') || '[]');
   const [historyList, setHistoryList] = useState(list);
+  const { editStorage } =
+    useLocalStorage<(typeof list)['number']>('search-locate');
 
-  const handleValueDelete = (id?: number, name?: string) => {
+  const handleValueDelete = (id?: number) => {
     if (!id) {
-      localStorage.setItem(historyKey, JSON.stringify([]));
+      editStorage();
       setHistoryList([]);
     } else {
-      const filtered = list.filter(
-        (item: (typeof list)[number]) => item.id !== id
-      );
-      if (list.length !== historyList.length) {
-        filtered.push({ id, name });
-      }
-      localStorage.setItem(historyKey, JSON.stringify(filtered));
-      setHistoryList(filtered);
+      setHistoryList((prev: (typeof list)['number']) => prev.id !== id);
+      editStorage('id', id);
     }
   };
 
