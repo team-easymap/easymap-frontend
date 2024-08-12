@@ -1,34 +1,31 @@
 import { Button } from '@/components/ui/button';
 import SearchHistoryList from './search-history-list';
 import SearchHistoryEmpty from './history-empty';
+import { SearchLocateValueType } from '@/pages/search';
 import { useState } from 'react';
 
-type SearchHistoryProps = {
-  searchType: 'poi' | 'routes';
+type SearchLocateHistoryProps = {
+  searchType: 'poi' | 'start' | 'end';
+  editSearchHistory: (
+    itemKey?: keyof SearchLocateValueType,
+    itemValue?: SearchLocateValueType[keyof SearchLocateValueType]
+  ) => void;
 };
 
-const SearchHistory = (props: SearchHistoryProps) => {
-  const { searchType } = props;
-  const historyKey = searchType === 'poi' ? 'search-locate' : 'search-routes';
-  const list = JSON.parse(localStorage.getItem(historyKey) || '[]');
-  const [historyList, setHistoryList] = useState(list);
+const SearchLocateHistory = (props: SearchLocateHistoryProps) => {
+  const { editSearchHistory } = props;
+  const list = JSON.parse(localStorage.getItem('search-locate') || '[]');
+  const [historyList, setHistoryList] = useState<SearchLocateValueType[]>(list);
 
-  const handleValueDelete = (id?: number, name?: string) => {
-    if (!id) {
-      localStorage.setItem(historyKey, JSON.stringify([]));
-      setHistoryList([]);
+  const handleValueDelete = (id?: number) => {
+    if (id) {
+      setHistoryList((prev) => prev.filter((i) => i.id !== id));
+      editSearchHistory('id', id);
     } else {
-      const filtered = list.filter(
-        (item: (typeof list)[number]) => item.id !== id
-      );
-      if (list.length !== historyList.length) {
-        filtered.push({ id, name });
-      }
-      localStorage.setItem(historyKey, JSON.stringify(filtered));
-      setHistoryList(filtered);
+      setHistoryList([]);
+      editSearchHistory();
     }
   };
-
   return (
     <>
       <section className='flex items-center justify-between p-2'>
@@ -54,4 +51,4 @@ const SearchHistory = (props: SearchHistoryProps) => {
   );
 };
 
-export default SearchHistory;
+export default SearchLocateHistory;

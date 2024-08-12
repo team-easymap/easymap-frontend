@@ -29,3 +29,12 @@ const customTwMerge = extendTailwindMerge({
 export function cn(...inputs: ClassValue[]) {
   return customTwMerge(clsx(inputs));
 }
+
+export const convertTime = (time: string) => {
+  return time.split(':').reduce((acc, cur, i) => {
+    if (!+cur) return acc;
+    if (i === 0) return acc + +cur + '시 ';
+    if (i === 1) return acc + +cur + '분 ';
+    return acc + +cur + '초';
+  }, '');
+};
