@@ -5,7 +5,8 @@ type PoiTag = {
   tag: string[];
   setTag: (tags: string[]) => void;
 };
-const PoiModifyTag = ({ data, tag, setTag }: PoiTag) => {
+const PoiModifyTag = (props: PoiTag) => {
+  const { data, tag, setTag } = props;
   const handlerTagClick = (data: string) => {
     if (tag.includes(data)) {
       setTag(tag.filter((t) => t !== data));

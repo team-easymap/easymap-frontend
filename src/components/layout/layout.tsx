@@ -3,7 +3,7 @@ import Footer from './footer';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
-  const withFooterPathnames = ['/', '/user', '/login', '/pois'];
+  const withFooterPathnames = ['/', '/user', '/login', '/pois', '/my'];
 
   return (
     <div className='flex h-dvh w-screen flex-col items-center justify-center bg-primary/10'>

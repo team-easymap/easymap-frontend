@@ -2,8 +2,10 @@ import { CommonButton } from '@/components/common/commonButton';
 
 type SaveProps = {
   onClick: () => void;
+  children: React.ReactNode;
 };
-const SaveButton = ({ onClick }: SaveProps) => {
+const SaveButton = (props: SaveProps) => {
+  const { onClick, children } = props;
   return (
     <div className='relative w-full border-y-2 p-4'>
       <CommonButton
@@ -14,7 +16,7 @@ const SaveButton = ({ onClick }: SaveProps) => {
         radius='small'
         use='category'
         className='justify-center'>
-        등록하기
+        {children}
       </CommonButton>
     </div>
   );
