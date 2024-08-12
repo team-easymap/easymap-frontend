@@ -31,11 +31,8 @@ const router = createBrowserRouter(
         <Route path='/pois' element={<POIListPage />} />
         <Route path='/pois/:id' element={<POIPage />} />
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
-<<<<<<< HEAD
         <Route path='/pois/register' element={<PoiRegisterPage />} />
-=======
         <Route path='/my' element={<MyPage />} />
->>>>>>> 12e2e94dbd92197b985b4e5f8ed0d48000169660
         <Route
           path='/pois/:id/review/modify'
           element={<PoiReviewMidifyPage />}
