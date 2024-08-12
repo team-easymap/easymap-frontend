@@ -1,11 +1,14 @@
 import CommonImage from '@/components/common/commonImage';
 import { useCallback } from 'react';
-import { useState } from 'react';
 import { useRef } from 'react';
 
-const ImageInput = () => {
-  const [imgFile, setImgFile] = useState([]);
-  const imgRef = useRef();
+type ImageProps = {
+  imgFile: string[];
+  setImgFile: React.Dispatch<React.SetStateAction<string[]>>;
+};
+const ImageInput = (props: ImageProps) => {
+  const { imgFile, setImgFile } = props;
+  const imgRef = useRef<HTMLInputElement | null>(null);
 
   const saveImgFile = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,8 +23,10 @@ const ImageInput = () => {
       const readAndPreview = (file: File) => {
         if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
           const reader = new FileReader();
-          reader.onload = () =>
+          reader.onload = () => {
+            // 상태 업데이트 함수에서 이전 상태를 기반으로 새로운 상태를 설정
             setImgFile((prev) => [...prev, reader.result as string]);
+          };
           reader.readAsDataURL(file);
         }
       };
@@ -33,7 +38,6 @@ const ImageInput = () => {
 
   const handleDeleteImage = useCallback(
     (idx: number) => {
-      console.log('hello');
       setImgFile(imgFile.filter((_, index) => index !== idx));
     },
     [imgFile]
@@ -72,18 +76,17 @@ const ImageInput = () => {
 
       <div className='m-auto my-2 box-border flex w-full gap-2 overflow-x-scroll'>
         {imgFile.map((img, index) => (
-          <>
-            <CommonImage
-              src={img}
-              deleted={true}
-              key={index}
-              index={index}
-              handleDeleteImage={handleDeleteImage}
-            />
-          </>
+          <CommonImage
+            src={img}
+            deleted={true}
+            key={index}
+            index={index}
+            handleDeleteImage={handleDeleteImage}
+          />
         ))}
       </div>
     </div>
   );
 };
+
 export default ImageInput;

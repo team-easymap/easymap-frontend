@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { CommonButton } from '@/components/common/commonButton';
 import { useState } from 'react';
-import DaumAddressInput from './daumAddressInput';
+import DaumAddressInput from '@/components/common/daumAddressInput';
 
 type AddressProps = {
   address: string;
@@ -18,7 +18,12 @@ const PoiModifyAddress = ({ address, setAddress }: AddressProps) => {
     <div className='w-full p-4'>
       <span className='text-16M'>주소를 입력해주세요</span>
       <div className='mt-2 flex gap-2'>
-        <Input value={address} onClick={handleAddressClick} readOnly />
+        <Input
+          value={address}
+          onClick={handleAddressClick}
+          className='text-ellipsis'
+          readOnly
+        />
         <CommonButton
           color='black'
           use='text'

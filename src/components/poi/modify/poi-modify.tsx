@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
 import Header from '@/components/common/Header';
-import PoiModifyAddress from './modify-address';
-import PoiModifyBox from './modify-box';
-import PoiModifyCategory from './modify-category';
-import PoiModifyTag from './modify-tag';
-import ImageInput from './imageInput';
+import PoiModifyAddress from './poi-modify-address';
+import PoiModifyBox from './poi-modify-box';
+import PoiModifyCategory from './poi-modify-category';
+import PoiModifyTag from './poi-modify-tag';
+import ImageInput from '@/components/common/imageInput';
+import SaveButton from '../review/modify/saveButton';
 const A1 = [
   '출입구 경사로',
   '문턱 없음',
@@ -35,7 +36,11 @@ const PoiModifyComponent = () => {
   const [mainCategory, setMainCategory] = useState<string>('');
   const [keyword, setKeyword] = useState<string[]>([]);
   const [subCategory, setSubCategory] = useState<string[]>([]);
+  const [imgFile, setImgFile] = useState([] as string[]);
 
+  const onClick = () => {
+    console.log(address, mainCategory, keyword, subCategory, imgFile);
+  };
   return (
     <>
       <Header title='장소 편집하기'></Header>
@@ -57,8 +62,9 @@ const PoiModifyComponent = () => {
         <PoiModifyTag data={A2} tag={subCategory} setTag={setSubCategory} />
       </PoiModifyBox>
       <PoiModifyBox>
-        <ImageInput />
+        <ImageInput imgFile={imgFile} setImgFile={setImgFile} />
       </PoiModifyBox>
+      <SaveButton onClick={onClick} />
     </>
   );
 };

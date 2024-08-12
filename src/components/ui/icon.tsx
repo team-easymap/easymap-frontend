@@ -1,3 +1,6 @@
+import MyPlaceIcon from '@/assets/icons/My_Place.svg?react';
+import FillOffIcon from '@/assets/icons/Fill_off.svg?react';
+import FillOnIcon from '@/assets/icons/Fill_on.svg?react';
 import AlbumIcon from '@/assets/icons/album.svg?react';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
 import ArrowLeftRigtIcon from '@/assets/icons/arrow-left-right.svg?react';
@@ -32,6 +35,7 @@ import ChevronUpIcon from '@/assets/icons/up.svg?react';
 import WarningIcon from '@/assets/icons/warning.svg?react';
 import CheckIcon from '@/assets/icons/check.svg?react';
 import StarFillIcon from '@/assets/icons/star-fill.svg?react';
+import SearchIcon from '@/assets/icons/search.svg?react';
 
 type IconProps = {
   name: keyof typeof icons;
@@ -40,6 +44,9 @@ type IconProps = {
 };
 
 const icons = {
+  myplace: MyPlaceIcon,
+  fillon: FillOnIcon,
+  filloff: FillOffIcon,
   album: AlbumIcon,
   arrowDown: ArrowDownIcon,
   arrowLeftRight: ArrowLeftRigtIcon,
@@ -73,7 +80,8 @@ const icons = {
   chevronUp: ChevronUpIcon,
   warning: WarningIcon,
   check: CheckIcon,
-  starFill: StarFillIcon
+  starFill: StarFillIcon,
+  search: SearchIcon
 } as const;
 
 const IconComponent = (props: IconProps) => {
