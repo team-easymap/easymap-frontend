@@ -80,7 +80,9 @@ const Mypage = () => {
             <img src={SmileImg} className='h-[48px] w-[48px]' />
             <span className='text-16M'>닉넴임</span>
           </div>
-          <button className='h-[36px] rounded-[4px] bg-gray-1 pl-[16px] pr-[16px] text-14M'>
+          <button
+            onClick={() => navigate('/profileEdit')}
+            className='h-[36px] rounded-[4px] bg-gray-1 pl-[16px] pr-[16px] text-14M'>
             수정
           </button>
         </div>
