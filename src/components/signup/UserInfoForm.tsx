@@ -40,7 +40,7 @@ const UserInfoForm = () => {
         </div>
       </div>
 
-      <div className='bt-gray-3 relative z-30 flex h-[60px] w-[100%] items-center justify-center border bg-white'>
+      <div className='relative z-30 flex h-[60px] w-[100%] items-center justify-center border-t border-gray-3 bg-white'>
         <button className='h-[36px] w-[90%] rounded-[4px] bg-[#A65CF5] text-14M text-white'>
           다음
         </button>

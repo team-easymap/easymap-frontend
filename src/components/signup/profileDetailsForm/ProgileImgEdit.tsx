@@ -3,7 +3,7 @@ import IconComponent from '@/components/ui/icon';
 
 const ProgileImgEdit = () => {
   return (
-    <div className='relative mb-[24px] h-[120px] w-[120px] rounded-full bg-gray-200'>
+    <div className='relative h-[120px] w-[120px] rounded-full bg-gray-200'>
       <img
         src={SmileIcon}
         className='h-full w-full rounded-full object-cover'
