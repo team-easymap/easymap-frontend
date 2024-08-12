@@ -6,6 +6,7 @@ import MyLocationComponent from './location';
 import 'leaflet/dist/leaflet.css';
 import PoiMarker from './poiMarker';
 import MapMarker from '../common/mapMarker';
+import RecordRoutes from './record';
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
@@ -53,6 +54,7 @@ const MainMap = () => {
         <PoiMarker />
         <MapMarker location={myLocation} name='smile' />
         <MyLocationComponent />
+        <RecordRoutes />
       </MapContainer>
     );
   } else {
