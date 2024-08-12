@@ -1,3 +1,6 @@
+import MyPlaceIcon from '@/assets/icons/My_Place.svg?react';
+import FillOffIcon from '@/assets/icons/Fill_off.svg?react';
+import FillOnIcon from '@/assets/icons/Fill_on.svg?react';
 import AlbumIcon from '@/assets/icons/album.svg?react';
 import ArrowDownIcon from '@/assets/icons/arrow-down.svg?react';
 import ArrowLeftRigtIcon from '@/assets/icons/arrow-left-right.svg?react';
@@ -40,6 +43,9 @@ type IconProps = {
 };
 
 const icons = {
+  myplace: MyPlaceIcon,
+  fillon: FillOnIcon,
+  filloff: FillOffIcon,
   album: AlbumIcon,
   arrowDown: ArrowDownIcon,
   arrowLeftRight: ArrowLeftRigtIcon,
