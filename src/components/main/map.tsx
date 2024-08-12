@@ -19,6 +19,7 @@ const MainMap = () => {
       navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
+          console.log(position);
           setMyLocation(new L.LatLng(latitude, longitude));
         },
         (error) => {

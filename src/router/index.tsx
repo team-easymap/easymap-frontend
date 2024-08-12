@@ -17,7 +17,7 @@ import SearchRoutesPage from '@/pages/search-routes';
 import PoiModifyPage from '@/pages/poi-modify';
 import PoiReviewMidifyPage from '@/pages/poi-review-modify';
 import SearchPOIResultPage from '@/pages/search-poi-result';
-
+import PoiRegisterPage from '@/pages/poi-register';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -30,6 +30,7 @@ const router = createBrowserRouter(
         <Route path='/pois' element={<POIListPage />} />
         <Route path='/pois/:id' element={<POIPage />} />
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
+        <Route path='/pois/register' element={<PoiRegisterPage />} />
         <Route
           path='/pois/:id/review/modify'
           element={<PoiReviewMidifyPage />}
