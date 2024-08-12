@@ -9,12 +9,13 @@ import SearchPage from '@/pages/search';
 import LoginPage from '@/pages/login';
 import SignupPage from '@/pages/signup';
 import UserInfoForm from '@/components/signup/UserInfoForm';
-import ProfileDetailsForm from '@/components/signup/ProfileDetailsForm';
 import TermsForm from '@/components/signup/TermsForm';
 import POIPage from '@/pages/poi';
 import POIListPage from '@/pages/poi-list';
 import SearchRoutesPage from '@/pages/search-routes';
 import PoiModifyPage from '@/pages/poi-modify';
+import MyPage from '@/pages/mypage';
+import ProfileDetailsForm from '@/components/signup/profileDetailsForm/ProfileDetailsForm';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path='/pois' element={<POIListPage />} />
         <Route path='/pois/:id' element={<POIPage />} />
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
+        <Route path='/my' element={<MyPage />} />
       </Route>
       <Route path='/signup' element={<SignupPage />}>
         <Route index element={<UserInfoForm />} />
