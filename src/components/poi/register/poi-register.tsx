@@ -6,7 +6,6 @@ import PoiModifyCategory from '../ui/poi-modify-category';
 import PoiModifyTag from '../ui/poi-modify-tag';
 import ImageInput from '@/components/common/imageInput';
 import SaveButton from '../ui/saveButton';
-
 const A1 = {
   data1: {
     tag: ['음식점', '카페', '주점'],
@@ -63,20 +62,20 @@ const A1 = {
   }
 };
 
-//POI 수정 컴포넌트
+//POI 등록하는 컴포너늩
 const PoiRegisterComponent = () => {
-  const [address, setAddress] = useState<string>('부산광역시 화명신도시로 145');
-  const [mainCategory, setMainCategory] = useState<string>('식음료');
-  const [keyword, setKeyword] = useState<string[]>(['음식점', '카페']);
-  const [subCategory, setSubCategory] = useState<string[]>(['출입구 경사물']);
-  const [imgFile, setImgFile] = useState(['1', '2'] as string[]);
+  const [address, setAddress] = useState<string>('');
+  const [mainCategory, setMainCategory] = useState<string>('');
+  const [keyword, setKeyword] = useState<string[]>([]);
+  const [subCategory, setSubCategory] = useState<string[]>([]);
+  const [imgFile, setImgFile] = useState([] as string[]);
 
   const onClick = () => {
     console.log(address, mainCategory, keyword, subCategory, imgFile);
   };
   return (
     <>
-      <Header title='장소 수정하기'></Header>
+      <Header title='장소 등록하기'></Header>
       <PoiModifyBox>
         <PoiModifyAddress address={address} setAddress={setAddress} />
       </PoiModifyBox>
@@ -147,7 +146,7 @@ const PoiRegisterComponent = () => {
         keyword.length !== 0 &&
         subCategory.length !== 0 &&
         imgFile.length !== 0 && (
-          <SaveButton onClick={onClick}>수정하기</SaveButton>
+          <SaveButton onClick={onClick}>등록하기</SaveButton>
         )}
     </>
   );

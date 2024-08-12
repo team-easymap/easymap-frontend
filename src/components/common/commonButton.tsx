@@ -10,7 +10,6 @@ const commonButtonVariants = cva(
   'inline-flex items-center whitespace-nowrap text-14M font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 py-2',
   {
     variants: {
-      ...buttonVariants.variants, // 기존 변형 포함
       color: {
         gray: 'bg-gray-1 text-black',
         purple: 'bg-[#A65CF5] text-white',
@@ -29,7 +28,6 @@ const commonButtonVariants = cva(
       }
     },
     defaultVariants: {
-      ...buttonVariants.defaultVariants,
       color: 'gray',
       radius: 'small',
       use: 'text'
@@ -37,16 +35,16 @@ const commonButtonVariants = cva(
   }
 );
 
-export interface commonButtonProps
+export interface CommonButtonProps
   extends Omit<ButtonProps, 'color' | 'radius'>, // 기존 ButtonProps에서 color와 radius 제외
     VariantProps<typeof commonButtonVariants> {
   asChild?: boolean;
-  color?: string;
-  radius?: string;
-  use?: string;
+  color?: 'gray' | 'purple' | 'white' | 'black' | 'red'; // 특정 문자열 리터럴로 타입 정의
+  radius?: 'small' | 'large'; // 특정 문자열 리터럴로 타입 정의
+  use?: 'icon' | 'text' | 'category'; // 특정 문자열 리터럴로 타입 정의
 }
 
-const CommonButton = React.forwardRef<HTMLButtonElement, commonButtonProps>(
+const CommonButton = React.forwardRef<HTMLButtonElement, CommonButtonProps>(
   (
     { className, variant, size, color, radius, use, asChild = false, ...props },
     ref
@@ -55,7 +53,8 @@ const CommonButton = React.forwardRef<HTMLButtonElement, commonButtonProps>(
     return (
       <Comp
         className={cn(
-          commonButtonVariants({ variant, size, color, radius, use, className })
+          commonButtonVariants({ size, color, radius, use }),
+          className // Explicitly include className here
         )}
         ref={ref}
         {...props}
@@ -64,6 +63,6 @@ const CommonButton = React.forwardRef<HTMLButtonElement, commonButtonProps>(
   }
 );
 
-CommonButton.displayName = 'ExtendedButton';
+CommonButton.displayName = 'CommonButton';
 
 export { CommonButton, commonButtonVariants };
