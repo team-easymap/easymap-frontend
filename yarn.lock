@@ -1459,7 +1459,7 @@ eastasianwidth@^0.2.0:
     "@radix-ui/react-slot" "^1.1.0"
     class-variance-authority "^0.7.0"
     clsx "^2.1.1"
-    easymap-frontend "file:../../../Library/Caches/Yarn/v6/npm-easymap-frontend-0.0.0-bc6fad64-2f58-4c42-a4e0-e2d094a4f76e-1723456129923/node_modules/easymap-frontend"
+    easymap-frontend "file:../../../../AppData/Local/Yarn/Cache/v6/npm-easymap-frontend-0.0.0-b95b02a5-91e9-4f54-a8e7-20f7fd666f17-1723461477570/node_modules/easymap-frontend"
     leaflet "^1.9.4"
     lucide-react "^0.408.0"
     prettier "^3.3.2"

@@ -9,15 +9,17 @@ import SearchPage from '@/pages/search';
 import LoginPage from '@/pages/login';
 import SignupPage from '@/pages/signup';
 import UserInfoForm from '@/components/signup/UserInfoForm';
-import ProfileDetailsForm from '@/components/signup/ProfileDetailsForm';
 import TermsForm from '@/components/signup/TermsForm';
 import POIPage from '@/pages/poi';
 import POIListPage from '@/pages/poi-list';
 import SearchRoutesPage from '@/pages/search-routes';
 import PoiModifyPage from '@/pages/poi-modify';
+import MyPage from '@/pages/mypage';
+import ProfileDetailsForm from '@/components/signup/profileDetailsForm/ProfileDetailsForm';
 import PoiReviewMidifyPage from '@/pages/poi-review-modify';
 import SearchPOIResultPage from '@/pages/search-poi-result';
-
+import PoiRegisterPage from '@/pages/poi-register';
+import ProfileEdit from '@/pages/profileEdit';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -30,6 +32,9 @@ const router = createBrowserRouter(
         <Route path='/pois' element={<POIListPage />} />
         <Route path='/pois/:id' element={<POIPage />} />
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
+        <Route path='/pois/register' element={<PoiRegisterPage />} />
+        <Route path='/my' element={<MyPage />} />
+        <Route path='/profileEdit' element={<ProfileEdit />} />
         <Route
           path='/pois/:id/review/modify'
           element={<PoiReviewMidifyPage />}
