@@ -1,5 +1,4 @@
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
 
 type ReviewContentProps = {
   reviewText: string;
@@ -8,7 +7,7 @@ type ReviewContentProps = {
 const PoiReviewContent = (props: ReviewContentProps) => {
   const { reviewText, setReviewText } = props;
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReviewText(event.target.value);
   };
   return (

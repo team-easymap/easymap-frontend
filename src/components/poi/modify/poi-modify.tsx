@@ -36,7 +36,7 @@ const PoiModifyComponent = () => {
   const [mainCategory, setMainCategory] = useState<string>('');
   const [keyword, setKeyword] = useState<string[]>([]);
   const [subCategory, setSubCategory] = useState<string[]>([]);
-  const [imgFile, setImgFile] = useState<string[]>([]);
+  const [imgFile, setImgFile] = useState([] as string[]);
 
   const onClick = () => {
     console.log(address, mainCategory, keyword, subCategory, imgFile);

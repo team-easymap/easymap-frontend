@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import IconComponent from '@/components/ui/icon';
 
 type RatingProps = {
@@ -27,15 +26,11 @@ const RatingMake = (props: RatingProps) => {
             onMouseEnter={() => handleStarHover(rating)}
             onClick={() => handleStarClick(rating)}
             className='cursor-pointer py-1'>
-            <IconComponent
-              key={rating}
-              name='starFill'
-              color={
-                selectedRating && rating <= selectedRating
-                  ? 'text-yellow-400'
-                  : 'text-orange-100'
-              }
-            />
+            {selectedRating && rating <= selectedRating ? (
+              <IconComponent key={rating} name='fillon' />
+            ) : (
+              <IconComponent key={rating} name='filloff' />
+            )}
           </div>
         ))}
       </div>
