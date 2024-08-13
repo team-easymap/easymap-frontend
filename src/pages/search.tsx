@@ -7,7 +7,7 @@ import { useLocalStorage } from '@/hooks/common/useLocalStorage';
 import { getRandomSearchResult } from '@/mocks/search-result';
 import { SearchResult } from '@/types/pois';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export type SearchLocateValueType = {
   id: number;
@@ -16,6 +16,7 @@ export type SearchLocateValueType = {
 
 const SearchPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
   const debouncedValue = useDebounce(searchValue);
   const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
@@ -26,8 +27,26 @@ const SearchPage = () => {
     setSearchResult(getRandomSearchResult());
   }, [debouncedValue]);
 
+  const handleValueSelect = (item: SearchLocateValueType) => {
+    if (item.id) {
+      const searchValue = {
+        id: item.id,
+        name: item.name!
+      };
+      updateStorage('id', searchValue);
+      const searchType = location.state.type;
+      searchType === 'poi'
+        ? navigate(`/search/poi/${item.id}`)
+        : navigate('/search/routes', {
+            state: {
+              [searchType]: { id: item.id, name: item.name }
+            }
+          });
+    }
+  };
+
   return (
-    <main className='flex flex-col w-full h-full bg-white'>
+    <main className='flex h-full w-full flex-col bg-white'>
       <SearchComponent
         searchValue={searchValue}
         handleValueChange={(value: string) => setSearchValue(value)}
@@ -43,6 +62,7 @@ const SearchPage = () => {
         <SearchHistory
           searchType={location.state.type}
           editSearchHistory={editStorage}
+          handleValueSelect={handleValueSelect}
         />
       )}
     </main>
