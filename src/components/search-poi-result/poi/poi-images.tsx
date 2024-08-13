@@ -9,8 +9,8 @@ const SearchPOIResultImages = (props: SearchPOIResultImagesProps) => {
   const { images } = props;
   return (
     <ul className='flex gap-2 px-4 overflow-hidden overflow-x-auto flex-nowrap'>
-      {[...images, ...images, ...images, ...images].map((image) => (
-        <li className='flex-none w-20 h-full' key={image.img_id}>
+      {[...images, ...images].map((image, idx) => (
+        <li className='flex-none w-20 h-full' key={`${image.img_id}-${idx}`}>
           <AspectRatio ratio={12 / 17} className='overflow-hidden rounded-sm'>
             <img
               className='object-cover'

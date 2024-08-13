@@ -1,13 +1,24 @@
 import { Button } from '@/components/ui/button';
 import IconComponent from '@/components/ui/icon';
 
-const SearchPOIResultButtons = () => {
+type SearchPOIResultButtonsProps = {
+  isPOI: boolean;
+};
+
+const SearchPOIResultButtons = (props: SearchPOIResultButtonsProps) => {
+  const { isPOI } = props;
+
   const buttons = [
     { icon: 'edit', value: '후기 등록', onClick: () => {} },
     { icon: 'share', value: '공유하기', onClick: () => {} },
     { icon: 'map', value: '길 찾기', onClick: () => {} },
     { icon: 'warning', value: '수정 요청', onClick: () => {} }
-  ];
+  ].slice(isPOI ? 0 : 1, 4) as {
+    icon: 'edit' | 'share' | 'map' | 'warning';
+    value: string;
+    onClick: () => void;
+  }[];
+
   return (
     <ul className='flex justify-between gap-2 m-4'>
       {buttons.map((button) => (
