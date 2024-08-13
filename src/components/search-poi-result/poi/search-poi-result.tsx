@@ -12,10 +12,16 @@ const SearchPOIResult = (props: SearchPOIResultProps) => {
   const { data } = props;
   return (
     <div className='absolute bottom-0 z-[90000] w-full rounded-t-xl bg-white'>
-      <SearchPOIResultInfo {...data} />
-      <SearchPOIResultTags tags={data.tags_on_poi} />
-      <SearchPOIResultImages images={data.imgs_on_poi} />
-      <SearchPOIResultButtons />
+      {data.poi_id ? (
+        <>
+          <SearchPOIResultInfo {...data} />
+          <SearchPOIResultTags tags={data.tags_on_poi} />
+          <SearchPOIResultImages images={data.imgs_on_poi} />
+          <SearchPOIResultButtons />
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

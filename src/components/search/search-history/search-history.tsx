@@ -18,7 +18,7 @@ const SearchLocateHistory = (props: SearchLocateHistoryProps) => {
   const list = JSON.parse(localStorage.getItem('search-locate') || '[]');
   const [historyList, setHistoryList] = useState<SearchLocateValueType[]>(list);
 
-  const handleValueDelete = (id?: number) => {
+  const handleValueDelete = (id?: number | string) => {
     if (id) {
       setHistoryList((prev) => prev.filter((i) => i.id !== id));
       editSearchHistory('id', id);

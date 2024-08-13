@@ -39,15 +39,15 @@ const SearchRoutesHistory = (props: SearchRoutesHistoryProps) => {
       </section>
       {historyList.length ? (
         <ul className='overflow-y-auto'>
-          {historyList.map((history) => (
+          {[...historyList].reverse().map((history) => (
             <React.Fragment key={history.storageKey}>
               <li
-                className='flex items-center justify-between gap-3 px-4 py-2 cursor-pointer'
+                className='flex cursor-pointer items-center justify-between gap-3 px-4 py-2'
                 onClick={() =>
                   handleRouteSelect({ start: history.start, end: history.end })
                 }>
                 <IconComponent name='mapPin' color='text-gray-6' />
-                <p className='flex flex-wrap items-center flex-1 gap-x-3 gap-y-1 whitespace-nowrap text-14M'>
+                <p className='flex flex-1 flex-wrap items-center gap-x-3 gap-y-1 whitespace-nowrap text-14M'>
                   {history.start?.name}
                   <IconComponent name='arrowRight' color='text-gray-6' />
                   {history.end?.name}
@@ -67,7 +67,7 @@ const SearchRoutesHistory = (props: SearchRoutesHistoryProps) => {
           ))}
         </ul>
       ) : (
-        <section className='flex flex-col items-center h-full gap-4 py-4 text-gray-6'>
+        <section className='flex h-full flex-col items-center gap-4 py-4 text-gray-6'>
           <SearchSVG />
           <p className='text-18M'>최근 검색 경로가 없어요!</p>
         </section>
