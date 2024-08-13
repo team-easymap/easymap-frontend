@@ -8,7 +8,7 @@ const PoiMarker = () => {
         <MapMarker
           key={poi.poi_id}
           name='mappin'
-          location={{ lat: poi.lat, lng: poi.lon }}
+          location={{ lat: poi.lat, lng: poi.lng }}
         />
       ))}
     </>

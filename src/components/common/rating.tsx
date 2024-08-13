@@ -36,20 +36,22 @@ const POIRatingComponent = (props: POIRatingComponentProps) => {
       <ul className='flex items-center'>
         {Array(rating)
           .fill(0)
-          .map(() => (
+          .map((e, i) => (
             <IconComponent
               name='starFill'
-              color='text-gray-3'
+              color='text-primary'
               size={sizeStyle[size!].iconSize}
+              key={`primary${e}+${i}`}
             />
           ))}
         {Array(empty)
           .fill(0)
-          .map(() => (
+          .map((e, i) => (
             <IconComponent
               name='starFill'
-              color='text-white'
+              color='text-gray-3'
               size={sizeStyle[size!].iconSize}
+              key={`${i}+${e}`}
             />
           ))}
       </ul>

@@ -14,7 +14,7 @@ const SearchPOIResultMap = (props: SearchPOIResultMapProps) => {
       zoom={15}
       scrollWheelZoom={true}
       zoomControl={false}
-      style={{ height: '64dvh' }}
+      style={{ height: '72dvh' }}
       tap={false}>
       <TileLayer
         url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
