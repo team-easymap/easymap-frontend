@@ -26,7 +26,7 @@ const SearchRoutesResultList = (props: SearchRoutesResultListProps) => {
               className={`text-12M ${selectedRoute.type === route.type ? 'selected' : ''}`}>
               가장 빠른
             </span>
-            <h2 className='text-black whitespace-nowrap text-20B'>
+            <h2 className='whitespace-nowrap text-20B text-black'>
               {convertTime(route.time_required)}
             </h2>
             <p className='mr-0.5 min-w-36 max-w-36 whitespace-nowrap text-14M text-gray-6'>{`${route.distance}km · 최대 경사 ${route.slope}`}</p>
@@ -36,7 +36,11 @@ const SearchRoutesResultList = (props: SearchRoutesResultListProps) => {
       <CommonButton
         color='purple'
         className='w-full'
-        onClick={() => navigate('/')}>
+        onClick={() =>
+          navigate(`/search/routes/${selectedRoute.type}`, {
+            state: { route: selectedRoute }
+          })
+        }>
         경로 선택
       </CommonButton>
     </div>

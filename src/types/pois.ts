@@ -7,6 +7,14 @@ export type SearchResult = {
   lon: number;
 };
 
+export type SearchRoutesResult = {
+  type: 'string';
+  distance: number;
+  slope: number;
+  time_required: string;
+  list: { lat: number; lng: number }[];
+}[];
+
 export type POI = {
   poi_id: number;
   poi_name: string;

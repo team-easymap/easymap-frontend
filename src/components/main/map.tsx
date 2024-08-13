@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import PoiMarker from './poiMarker';
 import MapMarker from '../common/mapMarker';
-import RecordRoutes from './record';
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
@@ -70,7 +69,6 @@ const MainMap = () => {
           className='rounded-full p-2 shadow-lg'
           rotation={rotation} // SVG 회전 각도 (45도 회전)
         />
-        <RecordRoutes />
       </MapContainer>
     );
   } else {
