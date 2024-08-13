@@ -25,7 +25,7 @@ const SearchRoutesPage = () => {
   }>('search-routes');
 
   useEffect(() => {
-    if (searchRoutesValue.start && searchRoutesValue.end) {
+    if (searchRoutesValue.start?.id && searchRoutesValue.end?.id) {
       const storageKey = `start:${searchRoutesValue.start.id}-end:${searchRoutesValue.end.id}`;
       updateStorage('storageKey', { storageKey, ...searchRoutesValue });
     }
@@ -36,11 +36,11 @@ const SearchRoutesPage = () => {
   };
 
   return (
-    <main className='flex flex-col h-dvh'>
+    <main className='flex h-dvh flex-col'>
       <SearchRoutes
         searchRoutesValue={searchRoutesValue}
         handleSearchRoutesValue={(value: SearchRoutesValueType) => {
-          const checkValue = value.start ? value : initValue;
+          let checkValue = value.start ? value : value.end ? value : initValue;
           setSearchRoutesValue(checkValue);
           localStorage.setItem('routes-value', JSON.stringify(checkValue));
         }}
