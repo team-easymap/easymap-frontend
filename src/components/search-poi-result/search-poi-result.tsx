@@ -1,10 +1,10 @@
 import type { SearchResult, POI } from '@/types/pois';
-import SearchPOIResultButtons from './poi-buttons';
-import SearchPOIResultImages from './poi-images';
-import SearchPOIResultInfo from './poi-info';
-import SearchPOIResultTags from './poi-tags';
 import { Separator } from '@/components/ui/separator';
 import { useNavigate } from 'react-router-dom';
+import POIInfo from '../poi/poi-description';
+import POIAlly from '../poi/poi-ally';
+import POIImages from '../poi/poi-images';
+import POIButtons from '../poi/poi-buttons';
 
 type SearchPOIResultProps = {
   data: POI & SearchResult & { name: string };
@@ -18,11 +18,11 @@ const SearchPOIResult = (props: SearchPOIResultProps) => {
       {data.poi_id ? (
         <>
           <div onClick={() => navigate(`/pois/${data.poi_id}`)}>
-            <SearchPOIResultInfo {...data} />
-            <SearchPOIResultTags tags={data.tags_on_poi} />
-            <SearchPOIResultImages images={data.imgs_on_poi} />
+            <POIInfo {...data} />
+            <POIAlly tags={data.tags_on_poi} />
+            <POIImages images={data.imgs_on_poi} />
           </div>
-          <SearchPOIResultButtons data={data} />
+          <POIButtons data={data} />
         </>
       ) : (
         <section>
@@ -30,7 +30,7 @@ const SearchPOIResult = (props: SearchPOIResultProps) => {
             {data.name || data.address}
           </h2>
           <Separator />
-          <SearchPOIResultButtons data={data} />
+          <POIButtons data={data} />
         </section>
       )}
     </div>

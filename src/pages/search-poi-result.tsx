@@ -1,4 +1,4 @@
-import SearchPOIResult from '@/components/search-poi-result/poi/search-poi-result';
+import SearchPOIResult from '@/components/search-poi-result/search-poi-result';
 import SearchPOIResultHeader from '@/components/search-poi-result/result-header';
 import SearchPOIResultMap from '@/components/search-poi-result/result-map';
 import { mockPOI } from '@/mocks/poi';
