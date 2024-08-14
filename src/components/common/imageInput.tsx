@@ -1,6 +1,7 @@
 import CommonImage from '@/components/common/commonImage';
 import { useCallback } from 'react';
 import { useRef } from 'react';
+import IconComponent from '../ui/icon';
 
 type ImageProps = {
   imgFile: string[];
@@ -66,15 +67,12 @@ const ImageInput = (props: ImageProps) => {
         className='hidden'
       />
 
-      {imgFile.length === 0 && (
+      <div className='m-auto my-2 box-border flex w-full gap-2 overflow-x-scroll'>
         <div
           onClick={handleFileUploadClick}
-          className='mt-4 flex h-[80px] cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-gray-500 hover:bg-gray-100'>
-          이미지 선택
+          className='flex h-[113px] w-20 flex-shrink-0 items-center justify-center bg-gray-1'>
+          <IconComponent name='image' />
         </div>
-      )}
-
-      <div className='m-auto my-2 box-border flex w-full gap-2 overflow-x-scroll'>
         {imgFile.map((img, index) => (
           <CommonImage
             src={img}
