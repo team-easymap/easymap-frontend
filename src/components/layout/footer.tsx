@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import FooterButtonComponent from '../common/footerButton';
+import IconComponent from '../ui/icon';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -9,20 +10,24 @@ const Footer = () => {
   return (
     <footer className='absolute bottom-0 flex h-[10dvh] w-full justify-between gap-6'>
       <FooterButtonComponent
-        icon='mapPin'
         title='주변'
         color={selectedColor('/pois')}
         onClick={() => navigate('/pois')}
-        aria-selected={selected('/pois')}
-      />
-      {/* <FooterButtonComponent icon='star' title='즐겨찾기' color='black' /> */}
+        aria-selected={selected('/pois')}>
+        <IconComponent name='mapPin' color={selectedColor('/pois')} />
+      </FooterButtonComponent>
+      {/*<FooterButtonComponent
+        title='즐겨찾기'
+        color={selectedColor('/')}>
+        <IconComponent name='mapPin' color={selectedColor('/pois')} />
+  </FooterButtonComponent> */}
       <FooterButtonComponent
-        icon='smile'
         title='마이'
         color={selectedColor('/my')}
         onClick={() => navigate('/my')}
-        aria-selected={selected('/my')}
-      />
+        aria-selected={selected('/my')}>
+        <IconComponent name='smile' color={selectedColor('/my')} />
+      </FooterButtonComponent>
     </footer>
   );
 };

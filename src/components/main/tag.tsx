@@ -14,7 +14,6 @@ const TagComponent = () => {
           onClick={() => {
             console.log('검색 값을 가지고 검색 페이지로 이동');
           }}>
-          {' '}
           {tag}
         </CommonButton>
       ))}
