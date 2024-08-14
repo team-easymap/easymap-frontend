@@ -1,27 +1,22 @@
-import ChipComponent from '../ui/chip';
+import ChipComponent from '@/components/ui/chip';
+import { type POI } from '@/types/pois';
 
-const POIAlly = () => {
+type POIAllyProps = {
+  tags: POI['tags_on_poi'];
+};
+
+const POIAlly = (props: POIAllyProps) => {
+  const { tags } = props;
   return (
-    <section className='flex flex-col gap-3 p-4'>
-      <h2 className='text-16M'>접근성 · 3점</h2>
-      <ul className='flex flex-wrap gap-2'>
-        <li>
+    <ul className='mb-4 flex flex-wrap gap-x-2 gap-y-4 px-4'>
+      {tags.map((tag) => (
+        <li key={tag.tag_id}>
           <ChipComponent size='sm' variant='fill'>
-            출입구 경사로
+            {tag.tag_name}
           </ChipComponent>
         </li>
-        <li>
-          <ChipComponent size='sm' variant='fill'>
-            장애인 화장실
-          </ChipComponent>
-        </li>
-        <li>
-          <ChipComponent size='sm' variant='fill'>
-            직원 서빙
-          </ChipComponent>
-        </li>
-      </ul>
-    </section>
+      ))}
+    </ul>
   );
 };
 
