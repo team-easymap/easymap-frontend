@@ -14,19 +14,21 @@ const Footer = () => {
         color={selectedColor('/pois')}
         onClick={() => navigate('/pois')}
         aria-selected={selected('/pois')}>
-        <IconComponent name='mapPin' color={selectedColor('/pois')} />
+        <IconComponent name='mapPin' />
       </FooterButtonComponent>
+
       {/*<FooterButtonComponent
         title='즐겨찾기'
         color={selectedColor('/')}>
         <IconComponent name='mapPin' color={selectedColor('/pois')} />
   </FooterButtonComponent> */}
+
       <FooterButtonComponent
         title='마이'
         color={selectedColor('/my')}
         onClick={() => navigate('/my')}
         aria-selected={selected('/my')}>
-        <IconComponent name='smile' color={selectedColor('/my')} />
+        <IconComponent name='smile' />
       </FooterButtonComponent>
     </footer>
   );
