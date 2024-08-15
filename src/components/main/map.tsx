@@ -19,8 +19,8 @@ const MainMap = () => {
 
   const [moveFlag, setMoveFlag] = useState<boolean>(false);
 
-  const [southEast, setSouthEast] = useState<L.LatLng | undefined>();
-  const [northWest, setNorthWest] = useState<L.LatLng | undefined>();
+  const [northWest, setNorthWest] = useState<L.LatLng | undefined>(); //좌상단
+  const [southEast, setSouthEast] = useState<L.LatLng | undefined>(); //우하단
 
   useEffect(() => {
     if (navigator.geolocation) {
