@@ -19,12 +19,10 @@ const Footer = () => {
         <IconComponent name='mapPin' />
       </FooterButtonComponent>
 
-      {/*<FooterButtonComponent
-        title='즐겨찾기'
-        color={selectedColor('/')}>
+      {/*      <FooterButtonComponent title='즐겨찾기' color={selectedColor('/')}>
         <IconComponent name='mapPin' color={selectedColor('/pois')} />
-  </FooterButtonComponent> */}
-
+      </FooterButtonComponent>
+  */}
       <FooterButtonComponent
         title='마이'
         color={selectedColor(selected('/my'))}
