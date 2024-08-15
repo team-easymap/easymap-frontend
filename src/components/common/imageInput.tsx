@@ -51,12 +51,7 @@ const ImageInput = (props: ImageProps) => {
   }, []);
 
   return (
-    <div className='w-full p-4'>
-      <span className='text-16M'>이미지 등록</span>
-      <br />
-      <span className='text-14R text-gray-6'>
-        장소의 존재를 증명할 수 있는 사진(간판, 출입구 등)이 필요해요
-      </span>
+    <div className='mt-2 w-full'>
       <input
         type='file'
         accept='image/*'

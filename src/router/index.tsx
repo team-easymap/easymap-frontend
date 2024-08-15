@@ -24,6 +24,7 @@ const PoiReviewModifyPage = lazy(() => import('@/pages/poi-review-modify'));
 const SearchPOIResultPage = lazy(() => import('@/pages/search-poi-result'));
 const PoiRegisterPage = lazy(() => import('@/pages/poi-register'));
 const MyPage = lazy(() => import('@/pages/mypage'));
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
