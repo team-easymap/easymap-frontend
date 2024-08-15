@@ -5,12 +5,10 @@ import PoiReviewContent from '../ui/review-content';
 import ImageInput from '@/components/common/imageInput';
 import SaveButton from '../../ui/saveButton';
 import { useState } from 'react';
-const PoiReviewModifyComponent = () => {
-  const [selectedRating, setSelectedRating] = useState<number>(3);
-  const [reviewText, setReviewText] = useState<string>(
-    'sfdsdsdsdsdsjshfsjagfjsagfjsagfjsajfsa'
-  );
-  const [imgFile, setImgFile] = useState<string[]>(['1', '2']);
+const PoiReviewRegisterComponent = () => {
+  const [selectedRating, setSelectedRating] = useState<number>(0);
+  const [reviewText, setReviewText] = useState<string>('');
+  const [imgFile, setImgFile] = useState<string[]>([]);
 
   const onClick = () => {
     console.log(selectedRating, reviewText, imgFile);
@@ -32,4 +30,4 @@ const PoiReviewModifyComponent = () => {
     </>
   );
 };
-export default PoiReviewModifyComponent;
+export default PoiReviewRegisterComponent;

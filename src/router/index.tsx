@@ -20,6 +20,7 @@ const PoiModifyPage = lazy(() => import('@/pages/poi-modify'));
 const ProfileDetailsForm = lazy(
   () => import('@/components/signup/profileDetailsForm/ProfileDetailsForm')
 );
+const PoiReviewRegisterPage = lazy(() => import('@/pages/poi-review-register'));
 const PoiReviewModifyPage = lazy(() => import('@/pages/poi-review-modify'));
 const SearchPOIResultPage = lazy(() => import('@/pages/search-poi-result'));
 const PoiRegisterPage = lazy(() => import('@/pages/poi-register'));
@@ -43,7 +44,11 @@ const router = createBrowserRouter(
         <Route path='/pois/register' element={<PoiRegisterPage />} />
         <Route path='/my' element={<MyPage />} />
         <Route
-          path='/pois/:id/review/modify'
+          path='/pois/:id/review/register'
+          element={<PoiReviewRegisterPage />}
+        />
+        <Route
+          path='/pois/:id/review/:reviewid/modify'
           element={<PoiReviewModifyPage />}
         />
       </Route>
