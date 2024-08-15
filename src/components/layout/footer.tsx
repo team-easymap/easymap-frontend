@@ -1,32 +1,36 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useNavigationType } from 'react-router-dom';
 import FooterButtonComponent from '../common/footerButton';
 import IconComponent from '../ui/icon';
 
 const Footer = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const selected = (path: string) => path === location.pathname;
-  const selectedColor = (path: string) => (selected(path) ? 'purple' : 'black');
+  const type = useNavigationType();
+  const { pathname, search } = useLocation();
+  const selected = (path: string) => path === pathname;
+  const selectedColor = (selected: boolean) => (selected ? 'purple' : 'black');
+
   return (
     <footer className='absolute bottom-0 flex h-[10dvh] w-full justify-between gap-6'>
       <FooterButtonComponent
         title='주변'
-        color={selectedColor('/pois')}
-        onClick={() => navigate('/pois')}
+        color={selectedColor(!!search && type !== 'POP')}
+        onClick={() => navigate(search && type !== 'POP' ? '/' : '/?pois=true')}
         aria-selected={selected('/pois')}>
-        <IconComponent name='mapPin' color={selectedColor('/pois')} />
+        <IconComponent name='mapPin' />
       </FooterButtonComponent>
+
       {/*<FooterButtonComponent
         title='즐겨찾기'
         color={selectedColor('/')}>
         <IconComponent name='mapPin' color={selectedColor('/pois')} />
   </FooterButtonComponent> */}
+
       <FooterButtonComponent
         title='마이'
-        color={selectedColor('/my')}
-        onClick={() => navigate('/my')}
+        color={selectedColor(selected('/my'))}
+        onClick={() => navigate(selected('/my') ? '/' : '/my')}
         aria-selected={selected('/my')}>
-        <IconComponent name='smile' color={selectedColor('/my')} />
+        <IconComponent name='smile' />
       </FooterButtonComponent>
     </footer>
   );

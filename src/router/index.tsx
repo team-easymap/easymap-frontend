@@ -12,8 +12,10 @@ const SignupPage = lazy(() => import('@/pages/signup'));
 const UserInfoForm = lazy(() => import('@/components/signup/UserInfoForm'));
 const TermsForm = lazy(() => import('@/components/signup/TermsForm'));
 const POIPage = lazy(() => import('@/pages/poi'));
-const POIListPage = lazy(() => import('@/pages/poi-list'));
 const SearchRoutesPage = lazy(() => import('@/pages/search-routes'));
+const SearchRoutesResultPage = lazy(
+  () => import('@/pages/search-routes-result')
+);
 const PoiModifyPage = lazy(() => import('@/pages/poi-modify'));
 const ProfileDetailsForm = lazy(
   () => import('@/components/signup/profileDetailsForm/ProfileDetailsForm')
@@ -30,8 +32,11 @@ const router = createBrowserRouter(
         <Route path='/search/poi' element={<SearchPage />} />
         <Route path='/search/poi/:id' element={<SearchPOIResultPage />} />
         <Route path='/search/routes' element={<SearchRoutesPage />} />
+        <Route
+          path='/search/routes/:type'
+          element={<SearchRoutesResultPage />}
+        />
         <Route path='login' element={<LoginPage />} />
-        <Route path='/pois' element={<POIListPage />} />
         <Route path='/pois/:id' element={<POIPage />} />
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
         <Route path='/pois/register' element={<PoiRegisterPage />} />

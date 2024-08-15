@@ -10,7 +10,8 @@ const FooterButtonComponent: React.FC<FooterButtonProps> = ({
   title,
   color,
   className,
-  children
+  children,
+  ...props
 }) => {
   const textColorClass = color === 'purple' ? 'text-[#A65CF5]' : 'text-black';
 
@@ -20,7 +21,8 @@ const FooterButtonComponent: React.FC<FooterButtonProps> = ({
         'flex h-full w-1/3 flex-col items-center justify-center gap-1 bg-transparent',
         textColorClass,
         className
-      )}>
+      )}
+      {...props}>
       {children}
       <span>{title}</span>
     </Button>
