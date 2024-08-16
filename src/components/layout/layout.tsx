@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='flex flex-col items-center justify-center w-screen h-dvh bg-primary/10'>
-      <div className='relative h-full w-full max-w-[375px] border border-y-0 border-gray-2 bg-white'>
+      <div className='relative h-full w-full max-w-[375px] bg-white shadow-xl'>
         <Suspense fallback={<></>}>
           {pathname === '/' ? (
             <>
