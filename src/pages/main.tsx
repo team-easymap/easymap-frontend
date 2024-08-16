@@ -6,7 +6,7 @@ import {
   useNavigationType,
   useSearchParams
 } from 'react-router-dom';
-import POIListPage from './poi-list';
+import POIList from '../components/main/poi-list/poi-list';
 import { useEffect } from 'react';
 
 const MainPage = () => {
@@ -15,14 +15,14 @@ const MainPage = () => {
   const type = useNavigationType();
 
   useEffect(() => {
-    return searchParams.delete('pois');
+    return () => searchParams.delete('pois');
   }, [searchParams]);
 
   return (
     <main className='flex flex-col w-full'>
       <MainHeaderComponent />
       <MainMap />
-      {search && type !== 'POP' && <POIListPage />}
+      {search && type !== 'POP' && <POIList />}
     </main>
   );
 };

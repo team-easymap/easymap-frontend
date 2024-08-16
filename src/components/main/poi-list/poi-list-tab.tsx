@@ -1,4 +1,4 @@
-const POIListCategory = () => {
+const POIListTab = () => {
   const categories = [
     '전체',
     '음식점',
@@ -20,7 +20,7 @@ const POIListCategory = () => {
       {categories.map((category) => (
         <li key={category}>
           <div
-            className={`text-14B whitespace-nowrap px-1 pb-1.5 pt-2.5 ${activeText(category)}`}>
+            className={`whitespace-nowrap px-1 pb-1.5 pt-2.5 ${activeText(category)}`}>
             {category}
           </div>
           <div
@@ -31,4 +31,4 @@ const POIListCategory = () => {
   );
 };
 
-export default POIListCategory;
+export default POIListTab;
