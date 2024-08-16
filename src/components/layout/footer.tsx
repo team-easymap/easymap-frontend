@@ -10,7 +10,7 @@ const Footer = () => {
   const selectedColor = (selected: boolean) => (selected ? 'purple' : 'black');
 
   return (
-    <footer className='absolute bottom-0 z-[6000] flex h-[10dvh] w-full justify-between gap-6 bg-white'>
+    <footer className='absolute bottom-0 z-[6000] flex h-[10dvh] w-full justify-between gap-6 border-t border-t-gray-3 bg-white'>
       <FooterButtonComponent
         title='주변'
         color={selectedColor(!!search && type !== 'POP')}
