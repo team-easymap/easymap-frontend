@@ -1,6 +1,12 @@
 import { CommonButton } from '../common/commonButton';
 
-const tagList = ['Text', 'Text', 'Text', 'Text', 'Text', 'Text', 'Text'];
+const tagList = [
+  '식음료',
+  '생활시설',
+  '장애인용 화장실 ',
+  '휠체어 이동시설',
+  '장애물'
+];
 
 const TagComponent = () => {
   return (

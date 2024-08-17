@@ -4,7 +4,7 @@ export type SearchResult = {
   poi_name?: string;
   poi_address?: string;
   lat: number;
-  lon: number;
+  lng: number;
 };
 
 export type SearchRoutesResult = {

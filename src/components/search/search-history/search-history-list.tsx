@@ -6,7 +6,7 @@ import * as React from 'react';
 
 type SearchHistoryProps = {
   list: SearchLocateValueType[];
-  handleValueDelete: (id: number) => void;
+  handleValueDelete: (id: number | string) => void;
   handleValueSelect: (item: SearchLocateValueType) => void;
 };
 
@@ -15,7 +15,7 @@ const SearchHistoryList = (props: SearchHistoryProps) => {
 
   return (
     <ul className='overflow-y-auto'>
-      {list.map((item) => (
+      {[...list].reverse().map((item) => (
         <React.Fragment key={item.id}>
           <li
             className='flex cursor-pointer items-center gap-3 px-4 py-2'

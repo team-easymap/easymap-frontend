@@ -1,39 +1,31 @@
-import ChipComponent from '../ui/chip';
-import IconComponent from '../ui/icon';
+import POIRatingComponent from '@/components/common/rating';
+import ChipComponent from '@/components/ui/chip';
+import { SearchResult, type POI } from '@/types/pois';
 
-const POIDescription = () => {
+type POIInfoProps = POI & SearchResult;
+
+const POIInfo = (props: POIInfoProps) => {
+  const {
+    poi_name,
+    poi_address,
+    poi_point_avg,
+    poi_point_count,
+    poi_point_ally
+  } = props;
   return (
-    <div className='flex justify-between p-4'>
-      <section className='flex flex-col gap-1 px-0.5'>
-        <h2 className='text-18M'>땡땡 월드</h2>
-        <div className='flex items-center gap-0.5'>
-          <span>5.0</span>
-          <ul className='flex'>
-            <li>
-              <IconComponent name='starFill' color='text-gray-3' />
-            </li>
-            <li>
-              <IconComponent name='starFill' color='text-gray-3' />
-            </li>
-            <li>
-              <IconComponent name='starFill' color='text-gray-3' />
-            </li>
-            <li>
-              <IconComponent name='starFill' color='text-gray-3' />
-            </li>
-            <li>
-              <IconComponent name='starFill' color='text-gray-3' />
-            </li>
-          </ul>
-          <span className='text-12R text-gray-6'>리뷰 38</span>
-        </div>
-        <p>서울시 강남구 강남대로 145 - 13</p>
+    <div className='p-4 pb-2'>
+      <section className='relative mb-2 flex flex-col gap-2'>
+        <h2 className='text-18M'>{poi_name}</h2>
+        <p className='text-14M'>{poi_address}</p>
+        <ChipComponent className='absolute right-0 top-0'>~Text~</ChipComponent>
       </section>
-      <div>
-        <ChipComponent>~Text~</ChipComponent>
-      </div>
+      <POIRatingComponent
+        score={poi_point_ally}
+        rating={poi_point_avg}
+        count={poi_point_count}
+      />
     </div>
   );
 };
 
-export default POIDescription;
+export default POIInfo;

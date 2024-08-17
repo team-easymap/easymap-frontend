@@ -7,7 +7,7 @@ type AddressProps = {
   address: string;
   setAddress: (address: string) => void;
 };
-const PoiModifyAddress = ({ address, setAddress }: AddressProps) => {
+const PoiAddress = ({ address, setAddress }: AddressProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddressClick = () => {
@@ -15,9 +15,8 @@ const PoiModifyAddress = ({ address, setAddress }: AddressProps) => {
   };
 
   return (
-    <div className='w-full p-4'>
-      <span className='text-16M'>주소를 입력해주세요</span>
-      <div className='mt-2 flex gap-2'>
+    <div className='mt-2 w-full'>
+      <div className='flex gap-2'>
         <Input
           value={address}
           onClick={handleAddressClick}
@@ -42,4 +41,4 @@ const PoiModifyAddress = ({ address, setAddress }: AddressProps) => {
   );
 };
 
-export default PoiModifyAddress;
+export default PoiAddress;

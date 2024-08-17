@@ -1,9 +1,9 @@
 import Header from '@/components/common/Header';
 import { useState } from 'react';
-import PoiModifyAddress from '../ui/poi-modify-address';
-import PoiModifyBox from '../ui/poi-modify-box';
-import PoiModifyCategory from '../ui/poi-modify-category';
-import PoiModifyTag from '../ui/poi-modify-tag';
+import PoiAddress from '../ui/poi-address';
+import PoiInputBox from '../ui/poi-box';
+import PoiCategory from '../ui/poi-category';
+import PoiTag from '../ui/poi-tag';
 import ImageInput from '@/components/common/imageInput';
 import SaveButton from '../ui/saveButton';
 
@@ -76,26 +76,28 @@ const PoiRegisterComponent = () => {
   };
   return (
     <>
-      <Header title='장소 수정하기'></Header>
-      <PoiModifyBox>
-        <PoiModifyAddress address={address} setAddress={setAddress} />
-      </PoiModifyBox>
+      <Header title='장소 등록하기'></Header>
+      <PoiInputBox
+        title='주소를 입력해주세요'
+        subtitle='장소를 등록하기 위해 주소 정보가 필요해요'>
+        <PoiAddress address={address} setAddress={setAddress} />
+      </PoiInputBox>
 
       {address !== '' && (
-        <PoiModifyBox>
-          <PoiModifyCategory
+        <PoiInputBox title='대분류 유형을 선택해주세요'>
+          <PoiCategory
             mainCategory={mainCategory}
             setMainCategory={setMainCategory}
             setKeyword={setKeyword}
             setSubCategory={setSubCategory}
             setImgFile={setImgFile}
           />
-        </PoiModifyBox>
+        </PoiInputBox>
       )}
       {address !== '' && mainCategory !== '' && mainCategory !== '' && (
         <>
-          <PoiModifyBox>
-            <PoiModifyTag
+          <PoiInputBox title='카테고리'>
+            <PoiTag
               data={
                 mainCategory === '식음료'
                   ? A1.data1.tag
@@ -110,9 +112,11 @@ const PoiRegisterComponent = () => {
               tag={keyword}
               setTag={setKeyword}
             />
-          </PoiModifyBox>
-          <PoiModifyBox>
-            <PoiModifyTag
+          </PoiInputBox>
+          <PoiInputBox
+            title='접근성 태그를 선택해주세요'
+            subtitle='등록하려고 하는 장소와 어울리는 접근성이 필요해요'>
+            <PoiTag
               data={
                 mainCategory === '식음료'
                   ? A1.data1.subtag
@@ -127,7 +131,7 @@ const PoiRegisterComponent = () => {
               tag={subCategory}
               setTag={setSubCategory}
             />
-          </PoiModifyBox>
+          </PoiInputBox>
         </>
       )}
 
@@ -136,9 +140,11 @@ const PoiRegisterComponent = () => {
         keyword.length !== 0 &&
         subCategory.length !== 0 && (
           <>
-            <PoiModifyBox>
+            <PoiInputBox
+              title='이미지 등록'
+              subtitle='장소의 존재를 증명할 수 있는 사진(간판, 출입구 등)이 필요해요'>
               <ImageInput imgFile={imgFile} setImgFile={setImgFile} />
-            </PoiModifyBox>
+            </PoiInputBox>
           </>
         )}
 
@@ -147,7 +153,7 @@ const PoiRegisterComponent = () => {
         keyword.length !== 0 &&
         subCategory.length !== 0 &&
         imgFile.length !== 0 && (
-          <SaveButton onClick={onClick}>수정하기</SaveButton>
+          <SaveButton onClick={onClick}>등록하기</SaveButton>
         )}
     </>
   );

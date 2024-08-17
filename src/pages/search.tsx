@@ -10,8 +10,10 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export type SearchLocateValueType = {
-  id: number;
+  id: number | string;
   name: string;
+  lat?: number;
+  lng?: number;
 };
 
 const SearchPage = () => {
@@ -28,21 +30,24 @@ const SearchPage = () => {
   }, [debouncedValue]);
 
   const handleValueSelect = (item: SearchLocateValueType) => {
-    if (item.id) {
-      const searchValue = {
-        id: item.id,
-        name: item.name!
-      };
-      updateStorage('id', searchValue);
-      const searchType = location.state.type;
-      searchType === 'poi'
-        ? navigate(`/search/poi/${item.id}`)
-        : navigate('/search/routes', {
-            state: {
-              [searchType]: { id: item.id, name: item.name }
-            }
-          });
-    }
+    const searchValue = {
+      id: item.id,
+      name: item.name!,
+      lat: item.lat,
+      lng: item.lng
+    };
+
+    updateStorage('id', searchValue);
+    const searchType = location.state.type;
+    searchType === 'poi'
+      ? navigate(`/search/poi/${item.id}`, {
+          state: item.lat ? { poi: item } : null
+        })
+      : navigate('/search/routes', {
+          state: {
+            [searchType]: { ...searchValue }
+          }
+        });
   };
 
   return (

@@ -17,12 +17,12 @@ const RatingMake = (props: RatingProps) => {
   };
 
   return (
-    <div className='w-full p-4'>
-      <span className='text-16M'>이 장소에 대한 평점을 남겨주세요</span>
+    <div className='mt-2 w-full'>
       <div className='mt-[10px] flex gap-1'>
         <span className='text-20B'>{selectedRating}</span>
-        {[1, 2, 3, 4, 5].map((rating) => (
+        {[1, 2, 3, 4, 5].map((rating, index) => (
           <div
+            key={index}
             onMouseEnter={() => handleStarHover(rating)}
             onClick={() => handleStarClick(rating)}
             className='cursor-pointer py-1'>

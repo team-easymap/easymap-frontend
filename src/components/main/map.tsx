@@ -1,18 +1,26 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import * as L from 'leaflet';
 import { useLocationStore } from '@/store/location';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import PoiMarker from './poiMarker';
 import MapMarker from '../common/mapMarker';
+import { useState } from 'react';
+import MapMoveHandler from './view-move';
+import MapCornerHandler from './view-corner';
+import MyLocationComponent from './location';
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
-  const [rotation, setRotation] = useState(0); // 회전 각도를 상태로 관리
 
   const myLocation = useLocationStore((state) => state.myLocation);
 
   const setMyLocation = useLocationStore((state) => state.setMyLocation);
+
+  const [moveFlag, setMoveFlag] = useState<boolean>(false);
+
+  const [northWest, setNorthWest] = useState<L.LatLng | undefined>(); //좌상단
+  const [southEast, setSouthEast] = useState<L.LatLng | undefined>(); //우하단
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -36,14 +44,6 @@ const MainMap = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRotation((prevRotation) => (prevRotation + 45) % 360); // 5초마다 45도씩 회전
-    }, 1000); // 5000ms = 5초
-
-    return () => clearInterval(interval); // 컴포넌트 언마운트 시 타이머 클리어
-  }, []);
-
   if (myLocation) {
     return (
       <MapContainer
@@ -63,12 +63,19 @@ const MainMap = () => {
           maxZoom={20}
         />
         <PoiMarker />
+        <MapCornerHandler
+          moveFlag={moveFlag}
+          setMoveFlag={setMoveFlag}
+          setNorthWest={setNorthWest}
+          setSouthEast={setSouthEast}
+        />
+        <MapMoveHandler setMoveFlag={setMoveFlag} />
         <MapMarker
           location={myLocation}
           name='myplace'
           className='rounded-full p-2 shadow-lg'
-          rotation={rotation} // SVG 회전 각도 (45도 회전)
         />
+        <MyLocationComponent />
       </MapContainer>
     );
   } else {

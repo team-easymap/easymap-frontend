@@ -18,20 +18,27 @@ const SearchResultList = (props: SearchResultListProps) => {
   const navigate = useNavigate();
 
   const handlePOIClick = (poi: (typeof list)[number]) => {
-    if (poi.poi_id) {
-      const searchValue = {
-        id: poi.poi_id,
-        name: poi.poi_name!
-      };
-      updateSearchHistory('id', searchValue);
-      searchType === 'poi'
-        ? navigate(`/search/poi/${poi.poi_id}`)
-        : navigate('/search/routes', {
-            state: {
-              [searchType]: { id: poi.poi_id, name: poi.poi_name }
+    const searchValue = {
+      id: poi.poi_id || `lat?${poi.lat}&lon?${poi.lng}`,
+      name: poi.poi_name || poi.address!,
+      lat: poi.address ? poi.lat : undefined,
+      lng: poi.address ? poi.lng : undefined
+    };
+    updateSearchHistory('id', searchValue);
+    searchType === 'poi'
+      ? navigate(`/search/poi/${searchValue.id}`, {
+          state: poi.poi_id ? null : { poi }
+        })
+      : navigate('/search/routes', {
+          state: {
+            [searchType]: {
+              id: searchValue.id,
+              name: searchValue.name,
+              lat: searchValue.lat,
+              lng: searchValue.lng
             }
-          });
-    }
+          }
+        });
   };
 
   return (
