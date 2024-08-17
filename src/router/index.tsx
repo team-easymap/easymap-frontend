@@ -21,6 +21,7 @@ import SearchPOIResultPage from '@/pages/search-poi-result';
 import PoiRegisterPage from '@/pages/poi-register';
 import ProfileEdit from '@/pages/profileEdit';
 import SearchRoutesResultPage from '@/pages/search-routes-result';
+import MyReviews from '@/pages/myReviews';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
         <Route path='/pois/register' element={<PoiRegisterPage />} />
         <Route path='/my' element={<MyPage />} />
+        <Route path='/my/reviews' element={<MyReviews />} />
         <Route path='/profileEdit' element={<ProfileEdit />} />
         <Route
           path='/pois/:id/review/modify'
