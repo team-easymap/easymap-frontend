@@ -14,7 +14,8 @@ const POIList = () => {
       <Separator className='my-2 block h-1 w-8 rounded-[2px]' />
       <h2 className='p-1.5 text-20B'>현재 지도 범위 내 주요 장소</h2>
       <POIListTab />
-      <ul className='grid w-full h-full grid-cols-2 gap-4 p-4 overflow-y-auto'>
+      <ul
+        className={`grid h-[calc(100%-13rem)] w-full grid-cols-2 gap-4 overflow-y-auto p-4`}>
         {Array(16)
           .fill(mockPOI)
           .map((poi, idx) => (

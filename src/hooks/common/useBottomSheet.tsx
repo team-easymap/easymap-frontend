@@ -10,7 +10,7 @@ import {
 export const useBottomSheet = (initialHeight: number, onClose?: () => void) => {
   const initialYPosition = (100 - initialHeight) * 3;
   const y = useMotionValue(initialYPosition);
-  const sheetHeight = useTransform(y, [0, 800], ['100%', `${initialHeight}%`]);
+  const sheetHeight = useTransform(y, [0, 800], ['100%', `0%`]);
 
   const expand = useCallback(() => {
     animate(y, 0, { type: 'tween', duration: 0.5, ease: 'easeOut' });
