@@ -2,13 +2,17 @@ import POIRatingComponent from '@/components/common/rating';
 import ChipComponent from '@/components/ui/chip';
 import { POI } from '@/types/pois';
 import { AspectRatio } from '@radix-ui/react-aspect-ratio';
+import { useNavigate } from 'react-router-dom';
 
 type POIListItemProps = POI;
 
 const POIListItem = (props: POIListItemProps) => {
-  const { poi_name, poi_point_avg, poi_point_count, poi_point_ally } = props;
+  const { poi_id, poi_name, poi_point_avg, poi_point_count, poi_point_ally } =
+    props;
+  const navigate = useNavigate();
+
   return (
-    <li className=''>
+    <li onClick={() => navigate(`/search/poi/${poi_id}`)}>
       <AspectRatio
         ratio={16 / 10.5}
         className='w-full mb-4 overflow-hidden rounded-sm'>
