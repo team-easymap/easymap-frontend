@@ -3,7 +3,7 @@ import SmileImg from '@/assets/smile.svg';
 import IconComponent from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Modal from '@/components/mypage/Modal';
+import Modal from '@/components/ui/Modal';
 
 const Mypage = () => {
   const navigate = useNavigate();
