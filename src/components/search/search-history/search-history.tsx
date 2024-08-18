@@ -10,14 +10,15 @@ type SearchLocateHistoryProps = {
     itemKey?: keyof SearchLocateValueType,
     itemValue?: SearchLocateValueType[keyof SearchLocateValueType]
   ) => void;
+  handleValueSelect: (item: SearchLocateValueType) => void;
 };
 
 const SearchLocateHistory = (props: SearchLocateHistoryProps) => {
-  const { editSearchHistory } = props;
+  const { editSearchHistory, handleValueSelect } = props;
   const list = JSON.parse(localStorage.getItem('search-locate') || '[]');
   const [historyList, setHistoryList] = useState<SearchLocateValueType[]>(list);
 
-  const handleValueDelete = (id?: number) => {
+  const handleValueDelete = (id?: number | string) => {
     if (id) {
       setHistoryList((prev) => prev.filter((i) => i.id !== id));
       editSearchHistory('id', id);
@@ -26,6 +27,7 @@ const SearchLocateHistory = (props: SearchLocateHistoryProps) => {
       editSearchHistory();
     }
   };
+
   return (
     <>
       <section className='flex items-center justify-between p-2'>
@@ -43,6 +45,7 @@ const SearchLocateHistory = (props: SearchLocateHistoryProps) => {
         <SearchHistoryList
           list={historyList}
           handleValueDelete={handleValueDelete}
+          handleValueSelect={handleValueSelect}
         />
       ) : (
         <SearchHistoryEmpty />

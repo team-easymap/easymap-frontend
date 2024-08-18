@@ -8,7 +8,7 @@ type SearchRoutesResultProps = {
 };
 
 const SearchRoutesResult = (props: SearchRoutesResultProps) => {
-  const { searchRoutesValue } = props;
+  // const { searchRoutesValue } = props;
 
   return (
     <div className='relative flex flex-col'>

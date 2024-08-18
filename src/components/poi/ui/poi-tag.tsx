@@ -1,11 +1,11 @@
 import { CommonButton } from '@/components/common/commonButton';
 
-type PoiTag = {
+type PoiTagProps = {
   data: string[];
   tag: string[];
   setTag: (tags: string[]) => void;
 };
-const PoiModifyTag = (props: PoiTag) => {
+const PoiTag = (props: PoiTagProps) => {
   const { data, tag, setTag } = props;
   const handlerTagClick = (data: string) => {
     if (tag.includes(data)) {
@@ -15,8 +15,7 @@ const PoiModifyTag = (props: PoiTag) => {
     }
   };
   return (
-    <div className='w-full p-4'>
-      <span className='text-16M'>키워드</span>
+    <div className='mt-2 w-full'>
       <div className='m-auto my-2 box-border flex w-full flex-wrap gap-2'>
         {data.map((d) => (
           <CommonButton
@@ -32,4 +31,4 @@ const PoiModifyTag = (props: PoiTag) => {
     </div>
   );
 };
-export default PoiModifyTag;
+export default PoiTag;

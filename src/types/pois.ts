@@ -4,8 +4,16 @@ export type SearchResult = {
   poi_name?: string;
   poi_address?: string;
   lat: number;
-  lon: number;
+  lng: number;
 };
+
+export type SearchRoutesResult = {
+  type: 'string';
+  distance: number;
+  slope: number;
+  time_required: string;
+  list: { lat: number; lng: number }[];
+}[];
 
 export type POI = {
   poi_id: number;

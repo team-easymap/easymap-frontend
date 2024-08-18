@@ -1,6 +1,6 @@
 import { CommonButton } from '@/components/common/commonButton';
 
-type MainCategoryProps = {
+type PoiCategoryProps = {
   mainCategory: string;
   setMainCategory: (categories: string) => void; // 수정: 문자열 배열을 인자로 받도록 변경
   setKeyword: (keywords: string[]) => void;
@@ -17,13 +17,13 @@ const categories = [
 ];
 
 //메인 카테고리에 따라 키워드가 달라짐
-const PoiModifyCategory = ({
+const PoiCategory = ({
   mainCategory,
   setMainCategory,
   setKeyword,
   setSubCategory,
   setImgFile
-}: MainCategoryProps) => {
+}: PoiCategoryProps) => {
   const handleCategoryClick = (category: string) => {
     setMainCategory(category);
     setKeyword([]);
@@ -32,8 +32,7 @@ const PoiModifyCategory = ({
   };
 
   return (
-    <div className='w-full p-4'>
-      <span className='text-16M'>대분류 유형을 선택해주세요</span>
+    <div className='mt-2 w-full'>
       <div className='m-auto my-2 box-border flex w-full flex-wrap gap-2'>
         {categories.map((category) => (
           <CommonButton
@@ -50,4 +49,4 @@ const PoiModifyCategory = ({
   );
 };
 
-export default PoiModifyCategory;
+export default PoiCategory;

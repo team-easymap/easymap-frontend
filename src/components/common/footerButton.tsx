@@ -1,20 +1,18 @@
-import IconComponent from '@/components/ui/icon';
 import { Button, type ButtonProps } from '../ui/button';
 import { cn } from '@/lib/utils';
 type FooterButtonProps = {
-  icon: string;
   title: string;
   color?: string;
+  children: React.ReactNode;
 } & ButtonProps;
 
 const FooterButtonComponent: React.FC<FooterButtonProps> = ({
-  icon,
   title,
   color,
   className,
-  ...buttonProps
+  children,
+  ...props
 }) => {
-  const iconColors = color === 'purple' ? '#A65CF5' : 'black';
   const textColorClass = color === 'purple' ? 'text-[#A65CF5]' : 'text-black';
 
   return (
@@ -24,8 +22,8 @@ const FooterButtonComponent: React.FC<FooterButtonProps> = ({
         textColorClass,
         className
       )}
-      {...buttonProps}>
-      <IconComponent name={icon} color={iconColors} />
+      {...props}>
+      {children}
       <span>{title}</span>
     </Button>
   );

@@ -1,7 +1,10 @@
+import SearchSVG from '@/assets/search-lg.svg?react';
+
 const SearchHistoryEmpty = () => {
   return (
-    <section className='py-12 text-center'>
-      <h2>💡최근 검색 내역이 없습니다.</h2>
+    <section className='flex flex-col items-center h-full gap-4 py-4 text-gray-6'>
+      <SearchSVG />
+      <p className='text-18M'>최근 검색어가 없어요!</p>
     </section>
   );
 };

@@ -2,7 +2,7 @@ import SearchRoutesResult from '@/components/search-routes/result/routes-result'
 import SearchRoutes from '@/components/search-routes/form/search-routes';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from '@/hooks/common/useLocalStorage';
-import SearchLocateHistory from '@/components/search/search-history/search-history';
+import SearchRoutesHistory from '@/components/search-routes/history/routes-history';
 
 export type SearchRoutesValueType = {
   start?: { id: number; name: string };
@@ -20,23 +20,27 @@ const SearchRoutesPage = () => {
   );
   const [searchRoutesValue, setSearchRoutesValue] =
     useState<SearchRoutesValueType>(routesValue || initValue);
-  const { updateStorage } = useLocalStorage<{
+  const { updateStorage, editStorage } = useLocalStorage<{
     storageKey: string & SearchRoutesValueType;
   }>('search-routes');
 
   useEffect(() => {
-    if (searchRoutesValue.start && searchRoutesValue.end) {
+    if (searchRoutesValue.start?.id && searchRoutesValue.end?.id) {
       const storageKey = `start:${searchRoutesValue.start.id}-end:${searchRoutesValue.end.id}`;
       updateStorage('storageKey', { storageKey, ...searchRoutesValue });
     }
-  }, [searchRoutesValue, updateStorage]);
+  }, [searchRoutesValue]);
+
+  const handleRouteSelect = (route: SearchRoutesValueType) => {
+    setSearchRoutesValue(route);
+  };
 
   return (
-    <main className='flex flex-col'>
+    <main className='flex h-dvh flex-col'>
       <SearchRoutes
         searchRoutesValue={searchRoutesValue}
         handleSearchRoutesValue={(value: SearchRoutesValueType) => {
-          const checkValue = value.start ? value : initValue;
+          let checkValue = value.start ? value : value.end ? value : initValue;
           setSearchRoutesValue(checkValue);
           localStorage.setItem('routes-value', JSON.stringify(checkValue));
         }}
@@ -44,7 +48,12 @@ const SearchRoutesPage = () => {
       {searchRoutesValue.start && searchRoutesValue.end ? (
         <SearchRoutesResult searchRoutesValue={searchRoutesValue} />
       ) : (
-        <SearchLocateHistory searchType='start' editSearchHistory={() => {}} />
+        <SearchRoutesHistory
+          editSearchHistory={(key?: 'storageKey', value?: string) =>
+            editStorage(key, value)
+          }
+          handleRouteSelect={handleRouteSelect}
+        />
       )}
     </main>
   );
