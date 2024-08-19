@@ -3,10 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "skipLibCheck": true,          // 라이브러리 타입 검사 무시
-    "noEmitOnError": false,        // 오류가 있어도 출력(빌드) 진행
-    "strict": true                  // 옵션에 따라 TypeScript의 엄격한 타입 검사 활성화
+    }
   },
   "files": [],
   "references": [
