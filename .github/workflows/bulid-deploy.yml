@@ -29,7 +29,10 @@ jobs:
         run: yarn install
 
       - name: Build project
-        run: yarn build
+        run: |
+          yarn build
+          ls -la
+          ls -la ./dist
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
@@ -61,7 +64,8 @@ jobs:
           aws s3 ls s3://${{ secrets.FrontendS3Bucket }} --region ap-northeast-2
           aws s3 rm s3://${{ secrets.FrontendS3Bucket }} --recursive
           aws s3 cp ./dist s3://${{ secrets.FrontendS3Bucket }} --recursive
-
+aws s3 ls s3://easymap-prd-frontend  --region ap-northeast-2 --profile test
+          aws s3 rm s3://easymap-prd-frontend --recursive
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.FrontendCloudFrontID }} --paths "/*"
