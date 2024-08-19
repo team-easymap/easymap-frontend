@@ -59,13 +59,13 @@ jobs:
 
       - name: Check if dist directory exists
         run: |
-          ls -la ./dist
           ls -la
+          ls -la /home/runner/work/easymap-frontend/easymap-frontend/dist
 
       - name: Deploy to S3
         run: |
           aws s3 rm s3://${{ secrets.FrontendS3Bucket }} --recursive
-          aws s3 cp ./dist s3://${{ secrets.FrontendS3Bucket }} --recursive
+          aws s3 cp /home/runner/work/easymap-frontend/easymap-frontend/dist s3://${{ secrets.FrontendS3Bucket }} --recursive
 
       - name: Invalidate CloudFront cache
         run: |
