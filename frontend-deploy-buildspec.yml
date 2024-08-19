@@ -1,0 +1,20 @@
+version: 0.2
+
+env:
+  parameter-store:
+    FrontendS3Bucket: "easymap.frontend.s3bucket"
+    FrontendCloudFrontID: "easymap.frontend.cloudfront-distribution"
+
+phases:
+
+  build:
+    commands:
+      - echo Deploy started on `date`
+      - aws s3 rm s3://${FrontendS3Bucket} --recursive
+      - aws s3 cp ./dist s3://${FrontendS3Bucket} --recursive
+
+  post_build:
+    commands:
+      - echo create invalidation of CloudFront Cash started on `date`
+      - aws cloudfront create-invalidation --distribution-id ${FrontendCloudFrontID} --paths "/*"
+
