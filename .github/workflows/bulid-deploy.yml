@@ -58,6 +58,7 @@ jobs:
 
       - name: Deploy to S3
         run: |
+          aws s3 ls s3://${{ secrets.FrontendS3Bucket }} --region ap-northeast-2
           aws s3 rm s3://${{ secrets.FrontendS3Bucket }} --recursive
           aws s3 cp ./dist s3://${{ secrets.FrontendS3Bucket }} --recursive
 
