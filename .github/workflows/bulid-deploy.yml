@@ -31,8 +31,6 @@ jobs:
       - name: Build project
         run: |
           yarn build
-          ls -la
-          ls -la ./dist
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
@@ -58,6 +56,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2  # 원하는 AWS 리전
+
+      - name: Check if dist directory exists
+        run: |
+          ls -la ./dist
+          ls -la
 
       - name: Deploy to S3
         run: |
