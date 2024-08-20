@@ -2,7 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import IconComponent from '../ui/icon';
 
-const SearchPOIResultHeader = () => {
+type SearchPOIResultHeaderProps = {
+  state?: boolean;
+};
+
+const SearchPOIResultHeader = (props: SearchPOIResultHeaderProps) => {
+  const { state } = props;
   const navigate = useNavigate();
   return (
     <header className='flex items-center justify-between p-2'>
@@ -11,7 +16,7 @@ const SearchPOIResultHeader = () => {
         variant='ghost'
         size='icon'
         className='mt-0.5'
-        onClick={() => navigate('/')}>
+        onClick={() => navigate('/', { state })}>
         <IconComponent name='close' />
       </Button>
     </header>

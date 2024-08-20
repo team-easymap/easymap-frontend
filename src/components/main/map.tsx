@@ -10,9 +10,13 @@ import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
 import PoiSave from './poi-save';
+import SelectLocation from '../common/select-location';
+import { useSelectMap } from '@/hooks/useSelectMap';
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
+
+  const { handleMapClick, handleMarkerClick } = useSelectMap();
 
   const myLocation = useLocationStore((state) => state.myLocation);
 
@@ -73,11 +77,12 @@ const MainMap = () => {
         <MapMarker
           location={myLocation}
           name='myplace'
-          className='rounded-full p-2 shadow-lg'
+          className='p-2 rounded-full shadow-lg'
         />
         <MyLocationComponent />
         {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
         <PoiSave />
+        <SelectLocation handleMapClick={handleMapClick} />
       </MapContainer>
     );
   } else {
