@@ -52,7 +52,7 @@ export type ErrorType<T> = {
 export const url = "/api/v1/poi";
 
 function getDetailPoi(poi_id: number): Promise<AxiosResponse<ApiResponse>> {
-    return axios.get(`${url}/${poi_id}`).then((data) => data);
+    return axios.get(`${url}/${poi_id}`).then((response) => response.data);
 }
 
 export default function useDetailPoi(poi_id: number): UseQueryResult<ApiResponse> {
