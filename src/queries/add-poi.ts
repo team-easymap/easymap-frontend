@@ -31,10 +31,10 @@ function AddPoi(formData: FormData): Promise<AxiosResponse<ApiResponse>> {
     return axios.post(url, formData, config);
 }
 
-export default function useAddPoi() {
+export default function useAddPoi(poiData: PoiData) {
     return useMutation(
         {
-            mutationFn: (poiData: PoiData) => {
+            mutationFn: () => {
                 const formData = new FormData();
 
                 formData.append('poiData', new Blob([JSON.stringify(poiData)], { type: 'application/json' }));
