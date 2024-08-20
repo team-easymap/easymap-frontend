@@ -9,8 +9,8 @@ const MyReviews = () => {
     <main>
       <Header title='내가 쓴 후기' prevOnClick={() => navigate(-1)} />
 
-      <ul className='mx-auto my-0 w-[90%] pt-[58px]'>
-        <li className='flex flex-col gap-[12px] p-[16px]'>
+      <ul className='mx-auto my-0 w-[90%]'>
+        <li className='flex flex-col gap-[12px] py-[16px]'>
           <div className='flex h-[44px] items-center justify-between'>
             <div className='flex gap-[8px]'>
               <img src={SmileImg} className='h-[44px]' />
