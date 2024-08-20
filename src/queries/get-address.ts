@@ -18,7 +18,12 @@ type ResponseApi = {
 const url = "/api/v1/search/address"
 
 function getAddress({ latitude, longitude }: LatLngProps): Promise<AxiosResponse<ResponseApi>> {
-    return axios.get(url + `?latitude=${latitude}&longitude=${longitude}`).then((response) => response.data);
+    return axios.get(url, {
+        params:
+        {
+            latitude, longitude
+        }
+    }).then((response) => response.data);
 }
 
 export function useGetAddress({ latitude, longitude }: LatLngProps): UseQueryResult<ResponseApi> {
