@@ -14,7 +14,7 @@ const SearchPOIResultPage = () => {
 
   return (
     <>
-      <SearchPOIResultHeader />
+      <SearchPOIResultHeader state={state?.selected} />
       <main className='relative flex h-[calc(100dvh-58px)] flex-col'>
         <SearchPOIResultMap center={[lat, lng]} />
         <SearchPOIResult data={state ? state.poi : mockPOI} />
