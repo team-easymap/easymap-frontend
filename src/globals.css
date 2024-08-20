@@ -57,9 +57,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
   body {
     font-family: 'Noto Sans KR', sans-serif;
     font-optical-sizing: auto;
@@ -67,11 +65,23 @@
     @apply text-black text-14R;
   }
 
-  @layer components {
-    li[aria-selected='true'],
-    li[aria-selected='true'] .selected {
-      @apply border-primary;
-      @apply text-primary;
-    }
+}
+
+@layer components {
+  li[aria-selected='true'],
+  li[aria-selected='true'] .selected {
+    @apply border-primary;
+    @apply text-primary;
+  }
+}
+
+@layer utilities {
+  .scroll-hide{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scroll-hide::-webkit-scrollbar{
+    display:none;
   }
 }
