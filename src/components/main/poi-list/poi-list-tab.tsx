@@ -15,7 +15,7 @@ const POIListTab = (props: POIListTabProps) => {
     category === activeTab ? 'text-primary' : 'text-gray-6';
 
   return (
-    <ul className='flex w-full gap-4 px-4 overflow-x-auto text-14M'>
+    <ul className='flex w-full gap-4 px-4 overflow-x-auto scroll-hide text-14M'>
       {CATEGORY_LIST.map((category) => (
         <li
           key={category}

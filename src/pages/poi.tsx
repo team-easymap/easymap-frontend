@@ -15,7 +15,7 @@ const POIPage = () => {
   return (
     <>
       <Header title='' prevOnClick={() => navigate(-1)} />
-      <main className='h-[calc(100dvh-58px)] overflow-y-auto'>
+      <main className='h-[calc(100dvh-58px)] overflow-y-auto scroll-hide'>
         <POIInfo {...data} />
         <POIButtons data={data} />
 

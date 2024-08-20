@@ -35,7 +35,7 @@ const POIList = () => {
         activeTab={activeTab}
       />
       <ul
-        className={`grid h-[calc(100%-13rem)] w-full auto-rows-min grid-cols-2 gap-4 overflow-y-auto p-4`}>
+        className={`grid h-[calc(100%-13rem)] w-full auto-rows-min grid-cols-2 gap-4 overflow-y-auto scroll-hide p-4`}>
         {categoryData.map((poi, idx) => (
           <POIListItem key={`${poi.poi_id}-${idx}`} {...poi} />
         ))}
