@@ -9,6 +9,7 @@ import { useState } from 'react';
 import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
+import PoiSave from './poi-save';
 const MainMap = () => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
@@ -16,12 +17,12 @@ const MainMap = () => {
   const myLocation = useLocationStore((state) => state.myLocation);
 
   const setMyLocation = useLocationStore((state) => state.setMyLocation);
-
   const [moveFlag, setMoveFlag] = useState<boolean>(false);
 
   const [northWest, setNorthWest] = useState<L.LatLng | undefined>(); //좌상단
   const [southEast, setSouthEast] = useState<L.LatLng | undefined>(); //우하단
 
+  const [flag, setFlag] = useState<boolean>(false);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -59,7 +60,6 @@ const MainMap = () => {
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
           minZoom={13}
-          maxNativeZoom={16}
           maxZoom={20}
         />
         <PoiMarker />
@@ -76,6 +76,8 @@ const MainMap = () => {
           className='rounded-full p-2 shadow-lg'
         />
         <MyLocationComponent />
+        {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
+        <PoiSave />
       </MapContainer>
     );
   } else {
