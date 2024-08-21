@@ -50,7 +50,7 @@ const POIButtons = (props: POIButtonsProps) => {
         <li key={button.icon}>
           <Button
             variant='ghost'
-            className='flex h-fit w-16 flex-col items-center px-2.5 py-2 text-14M'
+            className='flex h-fit w-16 flex-col items-center gap-2 px-2.5 py-2 text-14M'
             onClick={button.onClick}>
             <IconComponent name={button.icon} />
             {button.value}
