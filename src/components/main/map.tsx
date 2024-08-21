@@ -10,13 +10,19 @@ import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
 import PoiSave from './poi-save';
-import SelectLocation from '../common/select-location';
-import { useSelectMap } from '@/hooks/useSelectMap';
-const MainMap = () => {
+
+type MainMapProps = {
+  handleMarkerClick: (marker: {
+    lat: number;
+    lng: number;
+    poi_id: number;
+  }) => void;
+  mapRef: React.RefObject<L.Map>;
+};
+const MainMap = (props: MainMapProps) => {
+  const { mapRef } = props;
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
-
-  const { handleMapClick, handleMarkerClick } = useSelectMap();
 
   const myLocation = useLocationStore((state) => state.myLocation);
 
@@ -59,7 +65,8 @@ const MainMap = () => {
         style={{
           height: '90dvh'
         }}
-        tap={false}>
+        tap={false}
+        ref={mapRef}>
         <TileLayer
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
@@ -77,12 +84,11 @@ const MainMap = () => {
         <MapMarker
           location={myLocation}
           name='myplace'
-          className='p-2 rounded-full shadow-lg'
+          className='rounded-full p-2 shadow-lg'
         />
         <MyLocationComponent />
         {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
         <PoiSave />
-        <SelectLocation handleMapClick={handleMapClick} />
       </MapContainer>
     );
   } else {
