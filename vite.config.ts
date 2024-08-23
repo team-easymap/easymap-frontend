@@ -7,7 +7,15 @@ import path from 'path';
 export default defineConfig({
   plugins: [react(), svgr()],
   server: {
-    port: 3000
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: process.env.VITE_API_BASE_URL,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false
+      }
+    }
   },
   resolve: {
     alias: {
