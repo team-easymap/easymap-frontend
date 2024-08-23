@@ -2,9 +2,9 @@ import { SearchResult } from '@/types/pois';
 import { axiosInstance } from './axiosInstance';
 
 const path = {
-  coord: 'search/coordinate',
-  address: 'search/address',
-  autoComplete: 'search'
+  coord: 'api/v1/search/coordinate',
+  address: 'api/v1/search/address',
+  autoComplete: 'api/v1/search'
 } as const;
 
 type AutoCompleteSearchParams = {
@@ -12,7 +12,7 @@ type AutoCompleteSearchParams = {
 };
 
 type AutoCompleteSearchResult = {
-  abs_data: SearchResult[];
+  ads_data: SearchResult[];
   poi_data: SearchResult[];
 };
 
@@ -21,6 +21,6 @@ export const getSearchList = async (params: AutoCompleteSearchParams) => {
     path.autoComplete,
     { params }
   );
-  const { abs_data, poi_data } = data;
-  return [...abs_data, ...poi_data];
+  const { ads_data, poi_data } = data;
+  return [...ads_data, ...poi_data];
 };
