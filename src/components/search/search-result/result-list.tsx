@@ -44,7 +44,7 @@ const SearchResultList = (props: SearchResultListProps) => {
   return (
     <>
       {list.length ? (
-        <ul>
+        <ul className='scroll-hidden overflow-y-auto'>
           {list.map((result, idx) => (
             <li
               key={idx}
