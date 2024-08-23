@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
+  baseURL: '/fallback',
   withCredentials: true,
   timeout: 6000
 });
@@ -14,6 +15,8 @@ axiosInstance.interceptors.response.use(
         window.location.href = '/login';
       }
     }
-    return Promise.reject(err.message);
+    const message = err.response?.data?.message || err.message;
+    console.error(message);
+    return Promise.reject(message);
   }
 );
