@@ -3,6 +3,8 @@ import SearchPOIResultHeader from '@/components/search-poi-result/result-header'
 import SearchPOIResultMap from '@/components/search-poi-result/result-map';
 import { mockPOI } from '@/mocks/poi';
 import { useLocation } from 'react-router-dom';
+import { useSelectMap } from '@/hooks/useSelectMap';
+import SelectLocation from '@/components/common/select-location';
 
 const SearchPOIResultPage = () => {
   let { lat, lng } = mockPOI;
@@ -11,12 +13,14 @@ const SearchPOIResultPage = () => {
     lat = state.poi.lat;
     lng = state.poi.lng;
   }
+  const { mapRef, buttonRef } = useSelectMap();
 
   return (
     <>
-      <SearchPOIResultHeader />
+      <SearchPOIResultHeader state={state?.selected} />
       <main className='relative flex h-[calc(100dvh-58px)] flex-col'>
-        <SearchPOIResultMap center={[lat, lng]} />
+        <SelectLocation ref={buttonRef} className='top-4' />
+        <SearchPOIResultMap center={[lat, lng]} ref={mapRef} />
         <SearchPOIResult data={state ? state.poi : mockPOI} />
       </main>
     </>

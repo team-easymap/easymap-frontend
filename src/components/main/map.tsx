@@ -10,7 +10,17 @@ import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
 import PoiSave from './poi-save';
-const MainMap = () => {
+
+type MainMapProps = {
+  handleMarkerClick: (marker: {
+    lat: number;
+    lng: number;
+    poi_id: number;
+  }) => void;
+  mapRef: React.RefObject<L.Map>;
+};
+const MainMap = (props: MainMapProps) => {
+  const { mapRef } = props;
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
 
@@ -55,7 +65,8 @@ const MainMap = () => {
         style={{
           height: '90dvh'
         }}
-        tap={false}>
+        tap={false}
+        ref={mapRef}>
         <TileLayer
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
