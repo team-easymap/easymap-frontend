@@ -1,11 +1,10 @@
 import { getCoordByAddr } from '@/api/search';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { type LatLngLiteral } from 'leaflet';
+import { useQuery } from '@tanstack/react-query';
 
 export const useCoords = (address: string) => {
-  const { data } = useSuspenseQuery<LatLngLiteral, AxiosError>({
-    queryKey: ['search', 'coords'],
+  const { data } = useQuery({
+    enabled: !!address,
+    queryKey: ['search', 'coords', address],
     queryFn: () => getCoordByAddr(address)
   });
 
