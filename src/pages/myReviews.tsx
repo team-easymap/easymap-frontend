@@ -2,6 +2,8 @@ import Header from '@/components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import SmileImg from '@/assets/smile.svg';
 import IconComponent from '@/components/ui/icon';
+import ImgItem from '@/components/my-reviews/imgItem';
+import POIRatingComponent from '@/components/common/rating';
 
 const MyReviews = () => {
   const navigate = useNavigate();
@@ -18,21 +20,16 @@ const MyReviews = () => {
                 <span>장소이름</span>
                 <div>
                   <span>5.0</span>
+                  <POIRatingComponent count={4} rating={4} score={3.0} />
                 </div>
               </div>
             </div>
             <IconComponent name='detail' color='text-gray-4' />
           </div>
           <ul className='flex gap-[8px] overflow-x-auto'>
-            <li className='h-[80px] min-w-[128px] rounded-[4px] bg-blue-200'>
-              fg
-            </li>
-            <li className='h-[80px] min-w-[128px] rounded-[4px] bg-blue-200'>
-              fg
-            </li>
-            <li className='h-[80px] min-w-[128px] rounded-[4px] bg-blue-200'>
-              fg
-            </li>
+            <ImgItem imgUrl='fdsf' />
+            <ImgItem imgUrl='fdsf' />
+            <ImgItem imgUrl='fdsf' />
           </ul>
           <p>
             후기 뭐라고 적어야할까.배고프다. 맛있다. 이용하는 사용자는 어떤걸
