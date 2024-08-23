@@ -10,5 +10,5 @@ export const useSearchList = (keyword: string) => {
     queryFn: () => getSearchList({ keyword })
   });
 
-  return { data };
+  return data;
 };

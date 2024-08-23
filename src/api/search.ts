@@ -2,9 +2,9 @@ import { SearchResult } from '@/types/pois';
 import { axiosInstance } from './axiosInstance';
 
 const path = {
-  coord: 'coordinate',
-  address: 'address',
-  autoComplete: ''
+  coord: 'search/coordinate',
+  address: 'search/address',
+  autoComplete: 'search'
 } as const;
 
 type AutoCompleteSearchParams = {
