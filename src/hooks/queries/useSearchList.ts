@@ -5,9 +5,9 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 export const useSearchList = (keyword: string) => {
-  const data = useSuspenseQuery<SearchResult[], AxiosError>({
+  const { data } = useSuspenseQuery<SearchResult[], AxiosError>({
     queryKey: ['search', keyword],
-    queryFn: () => getSearchList({ keyword })
+    queryFn: keyword.length >= 2 ? () => getSearchList({ keyword }) : () => []
   });
 
   return data;

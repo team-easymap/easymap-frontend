@@ -28,9 +28,9 @@ const SearchPage = () => {
 
   useEffect(() => {
     if (debouncedValue) {
-      setSearchResult(data.data);
+      setSearchResult(data);
     }
-  }, [debouncedValue, data.data]);
+  }, [debouncedValue, data]);
 
   const handleValueSelect = (item: SearchLocateValueType) => {
     const searchValue = {
