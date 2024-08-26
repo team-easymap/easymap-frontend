@@ -3,17 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 
 const url = "/api/v1/map/pois"
 
-type LTProps = {
-    lt_lat: number;
-    lt_lon: number
-}
-type RBProps = {
-    rb_lat: number;
-    rb_lon: number;
-}
-type QueryParmas = {
-    BBOX: [LTProps, RBProps];
-}
 
 type PoiData = {
     poi_id: number;      // POI ID
@@ -28,17 +17,14 @@ type ApiResponse = {
     message: string;     // 응답 메시지 (예: "Success")
     data: PoiData[];     // POI 데이터 배열
 };
-function getViewPoi(bbox: QueryParmas): Promise<AxiosResponse<ApiResponse>> {
-    return axios.get(url, {
-        params: {
-            bbox: bbox
-        }
-    }).then((response) => response.data)
+function getViewPoi(bbox: [number, number, number, number]): Promise<AxiosResponse<ApiResponse>> {
+    return axios.get(url + `?bbox=${bbox[0]},${bbox[1]},${bbox[2]},${bbox[3]}`).then((response) => response.data)
 }
 
-export function useGetViewPoi(bbox: QueryParmas) {
+export function useGetViewPoi(bbox: [number, number, number, number]) {
     return useQuery({
-        queryKey: ['v1/map/pois', bbox],
-        queryFn: () => getViewPoi(bbox)
+        queryKey: ['api/v1/map/pois', bbox],
+        queryFn: () => getViewPoi(bbox),
+        enabled: !!bbox,
     })
 }
