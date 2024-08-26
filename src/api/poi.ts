@@ -22,6 +22,8 @@ export const createInstantPOI = async (latlng: LatLngLiteral) => {
 
 // POI 카테고리 가져오기
 export const getCategories = async () => {
-  const { data } = await axiosInstance.get<Category[]>(poiPath.category);
+  const { data } = await axiosInstance.get<{
+    category_response_dtolist: Category[];
+  }>(poiPath.category);
   return data;
 };

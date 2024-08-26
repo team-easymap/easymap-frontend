@@ -6,6 +6,7 @@ import PoiCategory from '../ui/poi-category';
 import PoiTag from '../ui/poi-tag';
 import ImageInput from '@/components/common/imageInput';
 import SaveButton from '../ui/saveButton';
+import { useCategories } from '@/hooks/queries/useCategories';
 const A1 = {
   data1: {
     tag: ['음식점', '카페', '주점'],
@@ -64,6 +65,7 @@ const A1 = {
 
 //POI 등록하는 컴포너늩
 const PoiRegisterComponent = () => {
+  const categories = useCategories();
   const [address, setAddress] = useState<string>('');
   const [mainCategory, setMainCategory] = useState<string>('');
   const [keyword, setKeyword] = useState<string[]>([]);
