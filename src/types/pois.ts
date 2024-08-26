@@ -39,3 +39,21 @@ export type POI = {
   lat: number;
   lng: number;
 };
+
+export type Category = {
+  categoryId: number;
+  categoryName: string;
+  detailedCategoryList: DetailedCategory[];
+  tagResponseDTOList: Tag[];
+};
+
+type DetailedCategory = {
+  detailedCategoryId: number;
+  detailedCategoryName: string;
+};
+
+type Tag = {
+  tagId: number;
+  tagName: string;
+  tagAccessibilityPoint: number;
+};
