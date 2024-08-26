@@ -1,5 +1,6 @@
 import { type LatLngLiteral } from 'leaflet';
 import { axiosInstance } from './axiosInstance';
+import { Category } from '@/types/pois';
 
 const poiPath = {
   list: 'api/v1/poi/list',
@@ -8,6 +9,7 @@ const poiPath = {
   add: 'api/v1/poi'
 } as const;
 
+// instant POI 생성
 type InstantPOI = { poi_id: number };
 
 export const createInstantPOI = async (latlng: LatLngLiteral) => {
@@ -15,5 +17,13 @@ export const createInstantPOI = async (latlng: LatLngLiteral) => {
     place: latlng
   });
 
+  return data;
+};
+
+// POI 카테고리 가져오기
+export const getCategories = async () => {
+  const { data } = await axiosInstance.get<{
+    category_response_dtolist: Category[];
+  }>(poiPath.category);
   return data;
 };
