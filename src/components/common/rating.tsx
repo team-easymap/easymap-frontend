@@ -3,7 +3,7 @@ import IconComponent from '../ui/icon';
 type POIRatingComponentProps = {
   score: number;
   rating: number;
-  count: number;
+  count?: number;
   size?: 'sm' | 'md';
 };
 
@@ -55,10 +55,14 @@ const POIRatingComponent = (props: POIRatingComponentProps) => {
             />
           ))}
       </ul>
-      <span
-        className={`whitespace-nowrap ${sizeStyle[size!].count} text-gray-6`}>
-        리뷰 {count}
-      </span>
+
+      {/* count prop이 없을 때 리뷰수를 보여주지 않는다. */}
+      {count && (
+        <span
+          className={`whitespace-nowrap ${sizeStyle[size!].count} text-gray-6`}>
+          리뷰 {count}
+        </span>
+      )}
     </div>
   );
 };
