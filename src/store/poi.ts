@@ -21,7 +21,6 @@ interface PoiInfo {
     setPoiCode: (poiCode: string) => void;
     setTagList: (tag: Tag) => void;
     setImages: (images: File[]) => void;
-
 }
 
 export const usePoiStore = create<PoiInfo>((set) => ({

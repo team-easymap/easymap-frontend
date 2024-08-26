@@ -50,7 +50,7 @@ const SearchResultList = (props: SearchResultListProps) => {
         ? navigate(`/search/poi/${poiItem.id}`, {
             state: { poi: poiItem }
           })
-        : navigate(`search/routes`, { state: { [searchType]: poiItem } });
+        : navigate(`/search/routes`, { state: { [searchType]: poiItem } });
     }
   }, [address, coords, navigate, searchType]);
 

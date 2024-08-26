@@ -3,10 +3,11 @@ import SearchRoutes from '@/components/search-routes/form/search-routes';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from '@/hooks/common/useLocalStorage';
 import SearchRoutesHistory from '@/components/search-routes/history/routes-history';
+import { useSearchRoutes } from '@/hooks/queries/useInstantPOI';
 
 export type SearchRoutesValueType = {
-  start?: { id: number; name: string };
-  end?: { id: number; name: string };
+  start?: { id: number; name: string; lat?: number; lng?: number };
+  end?: { id: number; name: string; lat?: number; lng?: number };
 };
 
 const SearchRoutesPage = () => {
@@ -24,9 +25,14 @@ const SearchRoutesPage = () => {
     storageKey: string & SearchRoutesValueType;
   }>('search-routes');
 
+  const { getPOIId } = useSearchRoutes();
+
   useEffect(() => {
     if (searchRoutesValue.start?.id && searchRoutesValue.end?.id) {
       const storageKey = `start:${searchRoutesValue.start.id}-end:${searchRoutesValue.end.id}`;
+
+      getPOIId(searchRoutesValue.start, 'start');
+      getPOIId(searchRoutesValue.end, 'end');
       updateStorage('storageKey', { storageKey, ...searchRoutesValue });
     }
   }, [searchRoutesValue]);
@@ -40,7 +46,11 @@ const SearchRoutesPage = () => {
       <SearchRoutes
         searchRoutesValue={searchRoutesValue}
         handleSearchRoutesValue={(value: SearchRoutesValueType) => {
-          let checkValue = value.start ? value : value.end ? value : initValue;
+          const checkValue = value.start
+            ? value
+            : value.end
+              ? value
+              : initValue;
           setSearchRoutesValue(checkValue);
           localStorage.setItem('routes-value', JSON.stringify(checkValue));
         }}
