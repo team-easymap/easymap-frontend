@@ -1,7 +1,9 @@
 import EmptyListComponent from '@/components/common/empty-list';
 import { Separator } from '@/components/ui/separator';
+import { useCoords } from '@/hooks/queries/useCoords';
 import { SearchLocateValueType } from '@/pages/search';
 import { SearchResult } from '@/types/pois';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type SearchResultListProps = {
@@ -16,35 +18,46 @@ type SearchResultListProps = {
 const SearchResultList = (props: SearchResultListProps) => {
   const { list, searchType, updateSearchHistory } = props;
   const navigate = useNavigate();
+  const [address, setAddress] = useState('');
+  const coords = useCoords(address);
 
-  const handlePOIClick = (poi: (typeof list)[number]) => {
-    const searchValue = {
-      id: poi.poi_id || `lat?${poi.lat}&lon?${poi.lng}`,
-      name: poi.poi_name || poi.address!,
-      lat: poi.address ? poi.lat : undefined,
-      lng: poi.address ? poi.lng : undefined
-    };
-    updateSearchHistory('id', searchValue);
-    searchType === 'poi'
-      ? navigate(`/search/poi/${searchValue.id}`, {
-          state: poi.poi_id ? null : { poi }
-        })
-      : navigate('/search/routes', {
-          state: {
-            [searchType]: {
-              id: searchValue.id,
-              name: searchValue.name,
-              lat: searchValue.lat,
-              lng: searchValue.lng
+  const handlePOIClick = async (poi: (typeof list)[number]) => {
+    if (!poi.poi_id && poi.address) {
+      setAddress(poi.address);
+    } else {
+      const poiItem = { id: poi.poi_id!, name: poi.poi_name! };
+      updateSearchHistory('id', poiItem);
+      searchType === 'poi'
+        ? navigate(`/search/poi/${poiItem.id}`)
+        : navigate(`/serach/routes`, {
+            state: {
+              [searchType]: poiItem
             }
-          }
-        });
+          });
+    }
   };
+
+  useEffect(() => {
+    if (coords) {
+      const poiItem = {
+        id: `lat?${coords.lat}&lng?${coords.lng}`,
+        name: address,
+        lat: coords.lat,
+        lng: coords.lng
+      };
+      updateSearchHistory('id', poiItem);
+      searchType === 'poi'
+        ? navigate(`/search/poi/${poiItem.id}`, {
+            state: { poi: poiItem }
+          })
+        : navigate(`/search/routes`, { state: { [searchType]: poiItem } });
+    }
+  }, [address, coords, navigate, searchType]);
 
   return (
     <>
       {list.length ? (
-        <ul>
+        <ul className='scroll-hidden overflow-y-auto'>
           {list.map((result, idx) => (
             <li
               key={idx}

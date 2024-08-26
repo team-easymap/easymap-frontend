@@ -25,6 +25,7 @@ const PoiReviewModifyPage = lazy(() => import('@/pages/poi-review-modify'));
 const SearchPOIResultPage = lazy(() => import('@/pages/search-poi-result'));
 const PoiRegisterPage = lazy(() => import('@/pages/poi-register'));
 const MyPage = lazy(() => import('@/pages/mypage'));
+const MyReviews = lazy(() => import('@/pages/myReviews'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +44,7 @@ const router = createBrowserRouter(
         <Route path='/pois/:id/modify' element={<PoiModifyPage />} />
         <Route path='/pois/register' element={<PoiRegisterPage />} />
         <Route path='/my' element={<MyPage />} />
+        <Route path='/my/reviews' element={<MyReviews />} />
         <Route
           path='/pois/:id/review/register'
           element={<PoiReviewRegisterPage />}

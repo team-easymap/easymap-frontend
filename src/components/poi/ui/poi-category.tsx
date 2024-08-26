@@ -1,23 +1,20 @@
 import { CommonButton } from '@/components/common/commonButton';
+import { ConvertCategories } from '@/store/category';
 
 type PoiCategoryProps = {
+  categories: string[];
   mainCategory: string;
   setMainCategory: (categories: string) => void; // 수정: 문자열 배열을 인자로 받도록 변경
   setKeyword: (keywords: string[]) => void;
-  setSubCategory: (subcategory: string[]) => void;
+  setSubCategory: (
+    subcategory: ConvertCategories[keyof ConvertCategories]['detail']
+  ) => void;
   setImgFile: (img: string[]) => void;
 };
 
-const categories = [
-  '식음료',
-  '생활시설',
-  '장애인용 화장실 ',
-  '휠체어 이동시설',
-  '장애물'
-];
-
 //메인 카테고리에 따라 키워드가 달라짐
 const PoiCategory = ({
+  categories,
   mainCategory,
   setMainCategory,
   setKeyword,

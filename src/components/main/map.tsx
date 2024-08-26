@@ -5,23 +5,35 @@ import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import PoiMarker from './poiMarker';
 import MapMarker from '../common/mapMarker';
-import { useState } from 'react';
 import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
-const MainMap = () => {
+import PoiSave from './poi-save';
+import { useGetViewPoi } from '@/queries/get-view-poi';
+
+type MainMapProps = {
+  handleMarkerClick: (marker: {
+    lat: number;
+    lng: number;
+    poi_id: number;
+  }) => void;
+  mapRef: React.RefObject<L.Map>;
+};
+const MainMap = (props: MainMapProps) => {
+  const { mapRef } = props;
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
 
-  const myLocation = useLocationStore((state) => state.myLocation);
+  const { myLocation, setMyLocation, lt, rb } = useLocationStore(
+    (state) => state
+  );
 
-  const setMyLocation = useLocationStore((state) => state.setMyLocation);
-
-  const [moveFlag, setMoveFlag] = useState<boolean>(false);
-
-  const [northWest, setNorthWest] = useState<L.LatLng | undefined>(); //좌상단
-  const [southEast, setSouthEast] = useState<L.LatLng | undefined>(); //우하단
-
+  const { data, error, isLoading } = useGetViewPoi([
+    lt?.lat,
+    lt?.lng,
+    rb?.lat,
+    rb?.lng
+  ]);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -54,28 +66,25 @@ const MainMap = () => {
         style={{
           height: '90dvh'
         }}
-        tap={false}>
+        tap={false}
+        ref={mapRef}>
         <TileLayer
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
           minZoom={13}
-          maxNativeZoom={16}
           maxZoom={20}
         />
         <PoiMarker />
-        <MapCornerHandler
-          moveFlag={moveFlag}
-          setMoveFlag={setMoveFlag}
-          setNorthWest={setNorthWest}
-          setSouthEast={setSouthEast}
-        />
-        <MapMoveHandler setMoveFlag={setMoveFlag} />
+        <MapCornerHandler />
+        <MapMoveHandler />
         <MapMarker
           location={myLocation}
           name='myplace'
           className='rounded-full p-2 shadow-lg'
         />
         <MyLocationComponent />
+        {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
+        <PoiSave />
       </MapContainer>
     );
   } else {

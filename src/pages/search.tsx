@@ -4,7 +4,7 @@ import SearchResultList from '@/components/search/search-result/result-list';
 import { Separator } from '@/components/ui/separator';
 import { useDebounce } from '@/hooks/common/useDebounce';
 import { useLocalStorage } from '@/hooks/common/useLocalStorage';
-import { getRandomSearchResult } from '@/mocks/search-result';
+import { useSearchList } from '@/hooks/queries/useSearchList';
 import { SearchResult } from '@/types/pois';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -22,12 +22,15 @@ const SearchPage = () => {
   const [searchValue, setSearchValue] = useState('');
   const debouncedValue = useDebounce(searchValue);
   const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
+  const data = useSearchList(debouncedValue);
   const { updateStorage, editStorage } =
     useLocalStorage<SearchLocateValueType>('search-locate');
 
   useEffect(() => {
-    setSearchResult(getRandomSearchResult());
-  }, [debouncedValue]);
+    if (debouncedValue) {
+      setSearchResult(data);
+    }
+  }, [debouncedValue, data]);
 
   const handleValueSelect = (item: SearchLocateValueType) => {
     const searchValue = {
