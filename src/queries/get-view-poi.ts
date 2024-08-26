@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const url = "/api/v1/map/pois"
 
