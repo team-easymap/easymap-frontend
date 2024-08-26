@@ -1,0 +1,53 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  
+  # pull_request:
+  #   branches:
+  #     - main  # 또는 원하는 브랜치
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Yarn
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Replace secrets in .env
+        run: |
+          sed -i -e "s#{vworldapiKey}#${{ secrets.VWORLDAPIKEY }}#g" ./.env
+
+      - name: Build project
+        run: |
+          yarn build
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2  # 원하는 AWS 리전
+
+      - name: Deploy to S3
+        run: |
+          aws s3 rm s3://${{ secrets.FrontendS3Bucket }} --recursive
+          aws s3 cp ./dist s3://${{ secrets.FrontendS3Bucket }} --recursive
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.FrontendCloudFrontID }} --paths "/*"

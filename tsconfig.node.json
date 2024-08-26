@@ -2,12 +2,12 @@
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "skipLibCheck": true,
+    "skipLibCheck": true,          
     "module": "ESNext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "noEmit": true
+    "noEmit": false               // 오류가 있어도 출력 생성
   },
   "include": ["vite.config.ts"]
 }
