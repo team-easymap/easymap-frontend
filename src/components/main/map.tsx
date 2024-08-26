@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 import PoiMarker from './poiMarker';
 import MapMarker from '../common/mapMarker';
-import { useState } from 'react';
 import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
 import PoiSave from './poi-save';
+import { useGetViewPoi } from '@/queries/get-view-poi';
 
 type MainMapProps = {
   handleMarkerClick: (marker: {
@@ -24,15 +24,16 @@ const MainMap = (props: MainMapProps) => {
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
 
-  const myLocation = useLocationStore((state) => state.myLocation);
+  const { myLocation, setMyLocation, lt, rb } = useLocationStore(
+    (state) => state
+  );
 
-  const setMyLocation = useLocationStore((state) => state.setMyLocation);
-  const [moveFlag, setMoveFlag] = useState<boolean>(false);
-
-  const [northWest, setNorthWest] = useState<L.LatLng | undefined>(); //좌상단
-  const [southEast, setSouthEast] = useState<L.LatLng | undefined>(); //우하단
-
-  const [flag, setFlag] = useState<boolean>(false);
+  const { data, error, isLoading } = useGetViewPoi([
+    lt?.lat,
+    lt?.lng,
+    rb?.lat,
+    rb?.lng
+  ]);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -74,13 +75,8 @@ const MainMap = (props: MainMapProps) => {
           maxZoom={20}
         />
         <PoiMarker />
-        <MapCornerHandler
-          moveFlag={moveFlag}
-          setMoveFlag={setMoveFlag}
-          setNorthWest={setNorthWest}
-          setSouthEast={setSouthEast}
-        />
-        <MapMoveHandler setMoveFlag={setMoveFlag} />
+        <MapCornerHandler />
+        <MapMoveHandler />
         <MapMarker
           location={myLocation}
           name='myplace'

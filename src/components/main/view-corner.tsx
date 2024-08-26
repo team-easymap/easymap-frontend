@@ -1,25 +1,21 @@
 import { useMap } from 'react-leaflet';
-import * as L from 'leaflet';
 import { CommonButton } from '../common/commonButton';
 import { useEffect } from 'react';
-type MapCornerType = {
-  moveFlag: boolean;
-  setMoveFlag: (move: boolean) => void;
-  setNorthWest: (coords: L.LatLng) => void;
-  setSouthEast: (coords: L.LatLng) => void;
-};
+import { useLocationStore } from '@/store/location';
 
 // 좌상단, 우하단 좌표를 관리하는 컴포넌트
-const MapCornerHandler = (props: MapCornerType) => {
+const MapCornerHandler = () => {
   const map = useMap();
-  const { moveFlag, setMoveFlag, setNorthWest, setSouthEast } = props;
+  const { setLt, setRb, view_move, setViewMove } = useLocationStore(
+    (state) => state
+  );
 
   const updateBounds = () => {
     const bounds = map.getBounds();
     console.log(bounds.getNorthWest(), bounds.getSouthEast());
-    setNorthWest(bounds.getNorthWest());
-    setSouthEast(bounds.getSouthEast());
-    setMoveFlag(false);
+    setLt(bounds.getNorthWest());
+    setRb(bounds.getSouthEast());
+    setViewMove(false);
   };
 
   useEffect(() => {
@@ -28,7 +24,7 @@ const MapCornerHandler = (props: MapCornerType) => {
 
   return (
     <>
-      {moveFlag && (
+      {view_move && (
         <CommonButton
           color='purple'
           use='text'

@@ -1,16 +1,15 @@
 import { useMap } from 'react-leaflet';
 import { useEffect } from 'react';
+import { useLocationStore } from '@/store/location';
 
-type MapMoveProps = {
-  setMoveFlag: (flag: boolean) => void;
-};
-const MapMoveHandler = (props: MapMoveProps) => {
-  const { setMoveFlag } = props;
+const MapMoveHandler = () => {
   const map = useMap();
+
+  const setViewMove = useLocationStore((state) => state.setViewMove);
 
   useEffect(() => {
     const mapMove = () => {
-      setMoveFlag(true);
+      setViewMove(true);
     };
     map.addEventListener('moveend', mapMove);
     return () => {
