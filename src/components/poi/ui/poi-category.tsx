@@ -9,9 +9,9 @@ type PoiCategoryProps = {
     keywords: ConvertCategories[keyof ConvertCategories]['tags']
   ) => void;
   setSubCategory: (
-    subcategory: ConvertCategories[keyof ConvertCategories]['detail']
+    subcategory?: ConvertCategories[keyof ConvertCategories]['detail'][number]
   ) => void;
-  setImgFile: (img: string[]) => void;
+  setImgFile: (img: File[]) => void;
 };
 
 //메인 카테고리에 따라 키워드가 달라짐
@@ -26,7 +26,7 @@ const PoiCategory = ({
   const handleCategoryClick = (category: string) => {
     setMainCategory(category);
     setKeyword([]);
-    setSubCategory([]);
+    setSubCategory();
     setImgFile([]);
   };
 

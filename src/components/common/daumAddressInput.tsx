@@ -4,20 +4,25 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog';
-import DaumPostcode from 'react-daum-postcode';
+import DaumPostcode, { Address } from 'react-daum-postcode';
 type DaumAddressProps = {
   isModalOpen: boolean;
   setIsModalOpen: (modal: boolean) => void;
   selectedAddress: string;
-  setSelectedAddress: (address: string) => void;
+  setSelectedAddress: React.Dispatch<
+    React.SetStateAction<{
+      address: string;
+      bcode: string;
+    }>
+  >;
 };
 const DaumAddressInput = ({
   isModalOpen,
   setIsModalOpen,
   setSelectedAddress
 }: DaumAddressProps) => {
-  const handleAddressSelect = (data: any) => {
-    setSelectedAddress(data.address);
+  const handleAddressSelect = ({ address, bcode }: Address) => {
+    setSelectedAddress({ address, bcode });
     setIsModalOpen(false); // Close the modal after selecting the address
   };
   return (

@@ -5,7 +5,12 @@ import DaumAddressInput from '@/components/common/daumAddressInput';
 
 type AddressProps = {
   address: string;
-  setAddress: (address: string) => void;
+  setAddress: React.Dispatch<
+    React.SetStateAction<{
+      address: string;
+      bcode: string;
+    }>
+  >;
 };
 const PoiAddress = ({ address, setAddress }: AddressProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

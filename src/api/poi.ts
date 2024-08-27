@@ -27,3 +27,8 @@ export const getCategories = async () => {
   }>(poiPath.category);
   return data;
 };
+
+// POI 생성
+export const createPOI = async (formData: FormData) => {
+  await axiosInstance.post<{ code: string }>(poiPath.add, formData);
+};
