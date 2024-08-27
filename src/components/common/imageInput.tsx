@@ -4,8 +4,8 @@ import { useRef } from 'react';
 import IconComponent from '../ui/icon';
 
 type ImageProps = {
-  imgFile: string[];
-  setImgFile: React.Dispatch<React.SetStateAction<string[]>>;
+  imgFile: File[];
+  setImgFile: React.Dispatch<React.SetStateAction<File[]>>;
 };
 const ImageInput = (props: ImageProps) => {
   const { imgFile, setImgFile } = props;
@@ -22,14 +22,12 @@ const ImageInput = (props: ImageProps) => {
         return;
       }
       const readAndPreview = (file: File) => {
-        if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-          const reader = new FileReader();
-          reader.onload = () => {
-            // 상태 업데이트 함수에서 이전 상태를 기반으로 새로운 상태를 설정
-            setImgFile((prev) => [...prev, reader.result as string]);
-          };
-          reader.readAsDataURL(file);
-        }
+        const reader = new FileReader();
+        reader.onload = () => {
+          // 상태 업데이트 함수에서 이전 상태를 기반으로 새로운 상태를 설정
+          setImgFile((prev) => [...prev, reader.result]);
+        };
+        reader.readAsDataURL(file);
       };
 
       Array.from(files).forEach(readAndPreview);
@@ -54,7 +52,7 @@ const ImageInput = (props: ImageProps) => {
     <div className='mt-2 w-full'>
       <input
         type='file'
-        accept='image/*'
+        accept='.jpeg, .jpg, .png'
         id='profileImg'
         onChange={saveImgFile}
         ref={imgRef}
