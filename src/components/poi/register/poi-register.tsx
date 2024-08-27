@@ -14,16 +14,17 @@ const PoiRegisterComponent = () => {
   const categories = useCategories();
   const [address, setAddress] = useState<string>('');
   const [mainCategory, setMainCategory] = useState<keyof ConvertCategories>('');
-  const [keyword, setKeyword] = useState<string[]>([]);
   const [subCategory, setSubCategory] = useState<
     ConvertCategories[typeof mainCategory]['detail']
+  >([]);
+  const [keyword, setKeyword] = useState<
+    ConvertCategories[typeof mainCategory]['tags']
   >([]);
   const [imgFile, setImgFile] = useState([] as string[]);
 
   const onClick = () => {
     console.log(address, mainCategory, keyword, subCategory, imgFile);
   };
-  console.log(address, mainCategory, keyword, subCategory, imgFile);
 
   return (
     <>
@@ -60,8 +61,8 @@ const PoiRegisterComponent = () => {
             subtitle='등록하려고 하는 장소와 어울리는 접근성이 필요해요'>
             <PoiTag
               data={categories[mainCategory].tags}
-              tag={subCategory}
-              setTag={setSubCategory}
+              tag={keyword}
+              setTag={setKeyword}
             />
           </PoiInputBox>
         </>

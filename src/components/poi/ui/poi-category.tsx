@@ -5,7 +5,9 @@ type PoiCategoryProps = {
   categories: string[];
   mainCategory: string;
   setMainCategory: (categories: string) => void; // 수정: 문자열 배열을 인자로 받도록 변경
-  setKeyword: (keywords: string[]) => void;
+  setKeyword: (
+    keywords: ConvertCategories[keyof ConvertCategories]['tags']
+  ) => void;
   setSubCategory: (
     subcategory: ConvertCategories[keyof ConvertCategories]['detail']
   ) => void;
