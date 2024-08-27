@@ -1,6 +1,6 @@
 import { type LatLngLiteral } from 'leaflet';
 import { axiosInstance } from './axiosInstance';
-import { Category } from '@/types/pois';
+import { Category, POI } from '@/types/pois';
 
 const poiPath = {
   list: 'api/v1/poi/list',
@@ -31,4 +31,11 @@ export const getCategories = async () => {
 // POI 생성
 export const createPOI = async (formData: FormData) => {
   await axiosInstance.post<{ code: string }>(poiPath.add, formData);
+};
+
+// POI 조회
+export const getPOI = async (id: number) => {
+  const { data } = await axiosInstance.get<POI>(`${poiPath.add}/${id}`);
+  console.log(data);
+  return data;
 };
