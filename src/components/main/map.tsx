@@ -8,7 +8,6 @@ import MapMarker from '../common/mapMarker';
 import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
-import PoiSave from './poi-save';
 import { useGetViewPoi } from '@/queries/get-view-poi';
 
 type MainMapProps = {

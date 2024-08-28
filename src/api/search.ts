@@ -29,8 +29,12 @@ export const getSearchList = async (params: AutoCompleteSearchParams) => {
 
 // 주소 기반 좌표 받기
 export const getCoordByAddr = async (address: string) => {
-  const { data } = await axiosInstance.post<LatLngLiteral>(path.coord, {
-    address
-  });
-  return data;
+  const { data } = await axiosInstance.post<{ data: LatLngLiteral }>(
+    path.coord,
+    {
+      address
+    }
+  );
+
+  return data.data;
 };

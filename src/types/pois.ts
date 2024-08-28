@@ -23,19 +23,30 @@ export type POI = {
   poi_point_avg: number;
   poi_point_count: number;
   poi_point_ally: number;
-  poi_category: {
-    category_id: number;
-    category_name: string;
-    detailed_category: string;
-  };
-  tags_on_poi: {
-    tag_id: number;
-    tag_name: string;
-  }[];
   imgs_on_poi: {
     img_id: number;
     s3_url: string;
   }[];
-  lat: number;
-  lng: number;
+  poi_latitude: number;
+  poi_longitude: number;
+  tags_on_poi: Tag[];
+  detailed_category_dto: DetailedCategory;
+};
+
+export type Category = {
+  category_id: number;
+  category_name: string;
+  detailed_category_list: DetailedCategory[];
+  tag_response_dtolist: Tag[];
+};
+
+type DetailedCategory = {
+  detailed_category_id: number;
+  detailed_category_name: string;
+};
+
+type Tag = {
+  tag_id: number;
+  tag_name: string;
+  tag_accessibility_point?: number;
 };
