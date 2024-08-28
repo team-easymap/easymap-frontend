@@ -1,8 +1,8 @@
 import POIRatingComponent from '@/components/common/rating';
 import ChipComponent from '@/components/ui/chip';
-import { SearchResult, type POI } from '@/types/pois';
+import { type POI } from '@/types/pois';
 
-type POIInfoProps = POI & SearchResult;
+type POIInfoProps = POI;
 
 const POIInfo = (props: POIInfoProps) => {
   const {
