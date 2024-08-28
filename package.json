@@ -52,6 +52,7 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
+    "vite-plugin-pwa": "^0.20.1",
     "vite-plugin-svgr": "^4.2.0"
   },
   "proxy": "https://api.easymap.site"
