@@ -64,7 +64,7 @@ const MainMap = (props: MainMapProps) => {
         scrollWheelZoom={true}
         zoomControl={false}
         style={{
-          height: '90dvh'
+          height: '90%'
         }}
         tap={false}
         ref={mapRef}>
