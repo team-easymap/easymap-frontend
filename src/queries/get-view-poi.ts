@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useQuery } from "@tanstack/react-query";
-
+import { axiosInstance } from "@/api/axiosInstance";
 const url = "/api/v1/map/pois"
 
 
@@ -17,14 +17,22 @@ type ApiResponse = {
     message: string;     // 응답 메시지 (예: "Success")
     data: PoiData[];     // POI 데이터 배열
 };
+
+
 function getViewPoi(bbox: [number, number, number, number]): Promise<AxiosResponse<ApiResponse>> {
-    return axios.get(url + `?bbox=${bbox[0]},${bbox[1]},${bbox[2]},${bbox[3]}`).then((response) => response.data)
+    return axiosInstance.get(url + `?bbox=${bbox[0]},${bbox[1]},${bbox[2]},${bbox[3]}`).then((response) => {
+        console.log('API Response:', response);  // 응답 출력
+        return response.data;
+    });
 }
 
 export function useGetViewPoi(bbox: [number, number, number, number]) {
+    const isBboxValid = bbox.every(coord => coord !== undefined);
+
     return useQuery({
         queryKey: ['api/v1/map/pois', bbox],
         queryFn: () => getViewPoi(bbox),
-        enabled: !!bbox,
-    })
+        enabled: isBboxValid,
+
+    });
 }
