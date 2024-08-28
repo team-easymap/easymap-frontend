@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 
 type SearchPOIResultMapProps = {
   center: [L.LatLng['lat'], L.LatLng['lng']];
@@ -23,6 +23,7 @@ const SearchPOIResultMap = forwardRef<L.Map, SearchPOIResultMapProps>(
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
         />
+        <Marker position={center} />
       </MapContainer>
     );
   }
