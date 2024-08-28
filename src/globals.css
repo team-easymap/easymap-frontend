@@ -62,9 +62,13 @@
     font-family: 'Noto Sans KR', sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    @apply text-black text-14R;
-  }
+    min-height: 100dvh;
+    @apply text-14R text-black;
 
+    @supports (-webkit-touch-callout: none) {
+      min-height: -webkit-fill-available;
+    }
+  }
 }
 
 @layer components {
@@ -76,12 +80,12 @@
 }
 
 @layer utilities {
-  .scroll-hide{
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  .scroll-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
-  .scroll-hide::-webkit-scrollbar{
-    display:none;
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
   }
 }
