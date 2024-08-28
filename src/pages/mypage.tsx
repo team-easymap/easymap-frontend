@@ -36,7 +36,7 @@ const Mypage = () => {
     {
       title: '내가 쓴 후기',
       icon: 'star',
-      link: '/',
+      link: '/my/reviews',
       function: null
     },
     {
