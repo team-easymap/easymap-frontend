@@ -21,11 +21,11 @@ const SearchPOIResultPage = () => {
   return (
     <>
       <SearchPOIResultHeader state={state?.selected} />
-      {(state || data) && (
+      {(state?.poi || data) && (
         <main className='relative flex h-[calc(100dvh-58px)] flex-col'>
           <SelectLocation ref={buttonRef} className='top-4' />
           <SearchPOIResultMap center={[lat!, lng!]} ref={mapRef} />
-          <SearchPOIResult data={state ? state.poi : data} />
+          <SearchPOIResult data={state?.poi ? state.poi : data} />
         </main>
       )}
     </>

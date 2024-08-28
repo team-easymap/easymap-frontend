@@ -12,14 +12,13 @@ import { useGetViewPoi } from '@/queries/get-view-poi';
 
 type MainMapProps = {
   handleMarkerClick: (marker: {
-    lat: number;
-    lng: number;
+    latlng: L.LatLngLiteral;
     poi_id: number;
   }) => void;
   mapRef: React.RefObject<L.Map>;
 };
 const MainMap = (props: MainMapProps) => {
-  const { mapRef } = props;
+  const { mapRef, handleMarkerClick } = props;
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
 
@@ -80,7 +79,7 @@ const MainMap = (props: MainMapProps) => {
           minZoom={8}
           maxZoom={20}
         />
-        <PoiMarker />
+        <PoiMarker handleMarkerClick={handleMarkerClick} />
         <MapCornerHandler />
         <MapMoveHandler />
         <MapMarker

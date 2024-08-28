@@ -15,7 +15,7 @@ const SearchPOIResult = (props: SearchPOIResultProps) => {
   const navigate = useNavigate();
   return (
     <div className='absolute bottom-0 z-[90000] w-full rounded-t-xl bg-white'>
-      {data.poi_id ? (
+      {data?.poi_id ? (
         <>
           <div onClick={() => navigate(`/pois/${data.poi_id}`)}>
             <POIInfo {...data} />

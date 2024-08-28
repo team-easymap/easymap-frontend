@@ -1,11 +1,10 @@
-import { LeafletMouseEvent, Map } from 'leaflet';
+import { LatLngLiteral, LeafletMouseEvent, Map } from 'leaflet';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type POIMarker = {
   poi_id: number;
-  lat: number;
-  lng: number;
+  latlng: LatLngLiteral;
 };
 
 export const useSelectMap = (isActive: boolean | undefined = false) => {
@@ -30,11 +29,9 @@ export const useSelectMap = (isActive: boolean | undefined = false) => {
   const handleMarkerClick = useCallback(
     (marker: POIMarker) => {
       const { poi_id } = marker;
-      if (isSelectMode) {
-        navigate(`/search/poi/${poi_id}`, { state: { selected: true } });
-      }
+      navigate(`/search/poi/${poi_id}`, { state: { selected: true } });
     },
-    [isSelectMode, navigate]
+    [navigate]
   );
 
   useEffect(() => {
