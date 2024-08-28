@@ -24,24 +24,28 @@ const POIButtons = (props: POIButtonsProps) => {
     {
       icon: 'edit',
       value: '후기 등록',
-      onClick: () => navigate(`/pois/${data.poi_id}/review/modify`)
+      onClick: () => navigate(`/pois/${data.poi_id}/review/modify`),
+      disabled: true
     },
-    { icon: 'share', value: '공유하기', onClick: copyURL },
+    { icon: 'share', value: '공유하기', onClick: copyURL, disabled: false },
     {
       icon: 'map',
       value: '길 찾기',
-      onClick: () => navigate('/search/routes', { state: { end: POIState } })
+      onClick: () => navigate('/search/routes', { state: { end: POIState } }),
+      disabled: true
     },
     {
       icon: 'warning',
       value: `장소 ${data.poi_id ? '수정' : '등록'}`,
       onClick: () =>
-        navigate(`/pois/${data.poi_id ? `${data.poi_id}/modify` : 'register'}`)
+        navigate(`/pois/${data.poi_id ? `${data.poi_id}/modify` : 'register'}`),
+      disabled: true
     }
   ].slice(data.poi_id ? 0 : 1, 4) as {
     icon: 'edit' | 'share' | 'map' | 'warning';
     value: string;
     onClick: () => void;
+    disabled: boolean;
   }[];
 
   return (
@@ -51,7 +55,8 @@ const POIButtons = (props: POIButtonsProps) => {
           <Button
             variant='ghost'
             className='flex h-fit w-16 flex-col items-center gap-2 px-2.5 py-2 text-14M'
-            onClick={button.onClick}>
+            onClick={button.onClick}
+            disabled={button.disabled}>
             <IconComponent name={button.icon} />
             {button.value}
           </Button>

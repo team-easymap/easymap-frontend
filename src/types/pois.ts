@@ -23,14 +23,15 @@ export type POI = {
   poi_point_avg: number;
   poi_point_count: number;
   poi_point_ally: number;
-
   imgs_on_poi: {
     img_id: number;
     s3_url: string;
   }[];
-  lat: number;
-  lng: number;
-} & Category;
+  poi_latitude: number;
+  poi_longitude: number;
+  tags_on_poi: Tag[];
+  detailed_category_dto: DetailedCategory;
+};
 
 export type Category = {
   category_id: number;

@@ -35,7 +35,8 @@ export const createPOI = async (formData: FormData) => {
 
 // POI 조회
 export const getPOI = async (id: number) => {
-  const { data } = await axiosInstance.get<POI>(`${poiPath.add}/${id}`);
-  console.log(data);
-  return data;
+  const { data } = await axiosInstance.get<{ poi: POI }>(
+    `${poiPath.add}/${id}`
+  );
+  return data.poi;
 };

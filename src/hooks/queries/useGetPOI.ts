@@ -1,11 +1,14 @@
 import { getPOI } from '@/api/poi';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export const useGetPOI = (id: number, isPOI: boolean) => {
-  const { data } = useSuspenseQuery({
+  const { data, isSuccess } = useQuery({
+    enabled: isPOI,
     queryKey: ['poi', id],
-    queryFn: isPOI ? () => getPOI(id) : () => ({})
+    queryFn: () => getPOI(id)
   });
 
-  return data;
+  if (isSuccess) {
+    return data;
+  }
 };
