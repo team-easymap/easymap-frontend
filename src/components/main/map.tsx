@@ -8,7 +8,6 @@ import MapMarker from '../common/mapMarker';
 import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
-import PoiSave from './poi-save';
 import { useGetViewPoi } from '@/queries/get-view-poi';
 
 type MainMapProps = {
@@ -64,7 +63,7 @@ const MainMap = (props: MainMapProps) => {
         scrollWheelZoom={true}
         zoomControl={false}
         style={{
-          height: '90%'
+          height: '90dvh'
         }}
         tap={false}
         ref={mapRef}>
@@ -84,7 +83,6 @@ const MainMap = (props: MainMapProps) => {
         />
         <MyLocationComponent />
         {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
-        <PoiSave />
       </MapContainer>
     );
   } else {
