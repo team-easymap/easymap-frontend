@@ -4,6 +4,7 @@ import IconComponent from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Modal from '@/components/common/Modal';
+import { logout } from '@/hooks/common/logout';
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Mypage = () => {
           subTitle: '',
           btnText: '로그아웃',
           approvalFC: () => {
-            console.log('로그아웃');
+            logout();
           }
         });
         modalToggle();
