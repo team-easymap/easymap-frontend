@@ -84,7 +84,6 @@ const MainMap = (props: MainMapProps) => {
         />
         <MyLocationComponent />
         {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
-        <PoiSave />
       </MapContainer>
     );
   } else {

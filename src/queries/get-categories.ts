@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from "axios"
-import { useQuery, UseQueryResult } from "@tanstack/react-query"
+import axios, { AxiosResponse } from "axios";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+
 // 태그 정보
 interface TagResponseDTO {
     tagId: number;
@@ -17,7 +18,7 @@ interface DetailedCategory {
 interface CategoryResponseDTO {
     categoryId: number;
     categoryName: string;
-    detailedCatgoryList: DetailedCategory[];
+    detailedCategoryList: DetailedCategory[];
     tagResponseDTOList: TagResponseDTO[];
 }
 
@@ -28,9 +29,10 @@ interface ApiResponse {
     categoryResponseDTOList: CategoryResponseDTO[];
 }
 
+// API endpoint URL
+const url = "/api/v1/poi/categorys";
 
-const url = "/api/v1/poi/categorys"
-
+// API 요청 함수
 function getCategories(): Promise<AxiosResponse<ApiResponse>> {
     return axios.get<ApiResponse>(url);
 }
@@ -38,7 +40,7 @@ function getCategories(): Promise<AxiosResponse<ApiResponse>> {
 // 카테고리 데이터를 가져오기 위한 커스텀 훅
 export function useGetCategories(): UseQueryResult<ApiResponse> {
     return useQuery({
-        queryKey: ['v1/poi/categorys'],
+        queryKey: ["/api/v1/poi/categorys"],
         queryFn: () => getCategories().then(response => response.data),
     });
 }
