@@ -1,11 +1,19 @@
 import { useLocationStore } from '@/store/location';
-import { Marker, Popup } from 'react-leaflet';
+import { Marker } from 'react-leaflet';
 import * as L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
-const PoiMarker = () => {
+type POIMarkerProps = {
+  handleMarkerClick: (marker: {
+    latlng: L.LatLngLiteral;
+    poi_id: number;
+  }) => void;
+};
+
+const PoiMarker = (props: POIMarkerProps) => {
+  const { handleMarkerClick } = props;
   const { view_poi } = useLocationStore((state) => state);
   const defaultIcon = L.icon({
     iconUrl: markerIcon,
@@ -21,13 +29,11 @@ const PoiMarker = () => {
         <Marker
           key={poi.poi_id}
           position={{ lat: poi.lat, lng: poi.lng }}
-          icon={defaultIcon}>
-          <Popup>
-            <span>장소 이름 : {poi.poi_name}</span>
-            <br />
-            <span>장소 타입 : {poi.type}</span>
-          </Popup>
-        </Marker>
+          icon={defaultIcon}
+          eventHandlers={{
+            click: (e) =>
+              handleMarkerClick({ latlng: e.latlng, poi_id: poi.poi_id })
+          }}></Marker>
       ))}
     </>
   );
