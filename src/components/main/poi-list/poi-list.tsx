@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CATEGORY_LIST } from '@/const/category';
 import { POI } from '@/types/pois';
+import { useLocationStore } from '@/store/location';
+import { getAddress } from '@/queries/get-poi-list';
 
 export type CategoryType = (typeof CATEGORY_LIST)[number];
 
@@ -26,6 +28,15 @@ const POIList = () => {
     setCategoryData(Array(16).fill(mockPOI).slice(index[0], index[1]));
   }, [activeTab]);
 
+  const { lt, rb } = useLocationStore((state) => state);
+
+  useEffect(() => {
+    if (lt && rb)
+      getAddress({
+        category_id: '1',
+        bbox: [lt.lat, lt.lng, rb.lat, rb.lng]
+      });
+  }, []);
   return (
     <BottomSheet>
       <Separator className='my-2 block h-1 w-8 rounded-[2px]' />
@@ -35,7 +46,7 @@ const POIList = () => {
         activeTab={activeTab}
       />
       <ul
-        className={`grid h-[calc(100%-13rem)] w-full auto-rows-min grid-cols-2 gap-4 overflow-y-auto scroll-hide p-4`}>
+        className={`scroll-hide grid h-[calc(100%-13rem)] w-full auto-rows-min grid-cols-2 gap-4 overflow-y-auto p-4`}>
         {categoryData.map((poi, idx) => (
           <POIListItem key={`${poi.poi_id}-${idx}`} {...poi} />
         ))}
