@@ -2,11 +2,23 @@ import Header from '@/components/common/Header';
 import SmileImg from '@/assets/smile.svg';
 import IconComponent from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '@/components/common/Modal';
+import { logout } from '@/hooks/common/logout';
+import { useDeleteSecession } from '@/queries/secession';
 
 const Mypage = () => {
   const navigate = useNavigate();
+
+  const { mutate: deleteSecession } = useDeleteSecession(); // 훅 호출
+
+  // 로그인 여부 확인
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      alert('로그인 후 이용해주세요.');
+      navigate('/login');
+    }
+  }, []);
 
   // 모달 활성화 여부
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +36,7 @@ const Mypage = () => {
     {
       title: '내가 쓴 후기',
       icon: 'star',
-      link: '/',
+      link: '/my/reviews',
       function: null
     },
     {
@@ -43,7 +55,7 @@ const Mypage = () => {
           subTitle: '',
           btnText: '로그아웃',
           approvalFC: () => {
-            console.log('로그아웃');
+            logout();
           }
         });
         modalToggle();
@@ -59,7 +71,7 @@ const Mypage = () => {
           subTitle: '탈퇴하시면 나의 즐겨찾기 정보는 사라집니다.',
           btnText: '회원 탈퇴',
           approvalFC: () => {
-            console.log('회원탈퇴');
+            deleteSecession();
           }
         });
         modalToggle();
