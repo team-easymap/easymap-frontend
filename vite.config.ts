@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv, UserConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import path from 'path';
@@ -8,7 +9,7 @@ import path from 'path';
 export default (config: UserConfig) => {
   process.env = { ...process.env, ...loadEnv(config.mode!, process.cwd()) };
   return defineConfig({
-    plugins: [react(), svgr()],
+    plugins: [react(), svgr(), VitePWA({ registerType: 'autoUpdate' })],
     server: {
       port: 3000,
       proxy: {

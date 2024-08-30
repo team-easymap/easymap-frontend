@@ -22,7 +22,7 @@ const MainPage = () => {
   }, [searchParams]);
 
   return (
-    <main className='flex w-full flex-col'>
+    <main className='flex h-dvh w-full flex-col'>
       <MainHeaderComponent />
       <SelectLocation ref={buttonRef} isSelectMode={isSelectMode} />
       <MainMap mapRef={mapRef} handleMarkerClick={handleMarkerClick} />

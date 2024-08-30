@@ -8,23 +8,21 @@ import MapMarker from '../common/mapMarker';
 import MapMoveHandler from './view-move';
 import MapCornerHandler from './view-corner';
 import MyLocationComponent from './location';
-import PoiSave from './poi-save';
 import { useGetViewPoi } from '@/queries/get-view-poi';
 
 type MainMapProps = {
   handleMarkerClick: (marker: {
-    lat: number;
-    lng: number;
+    latlng: L.LatLngLiteral;
     poi_id: number;
   }) => void;
   mapRef: React.RefObject<L.Map>;
 };
 const MainMap = (props: MainMapProps) => {
-  const { mapRef } = props;
+  const { mapRef, handleMarkerClick } = props;
   const key = import.meta.env.VITE_VWORLD_API_KEY;
   const url = import.meta.env.VITE_VWORLD_API_URL;
 
-  const { myLocation, setMyLocation, lt, rb } = useLocationStore(
+  const { myLocation, setMyLocation, lt, rb, setViewPoi } = useLocationStore(
     (state) => state
   );
 
@@ -34,6 +32,13 @@ const MainMap = (props: MainMapProps) => {
     rb?.lat,
     rb?.lng
   ]);
+
+  useEffect(() => {
+    if (data) {
+      setViewPoi(data.data);
+    }
+  }, [data?.data]);
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -60,7 +65,7 @@ const MainMap = (props: MainMapProps) => {
     return (
       <MapContainer
         center={myLocation}
-        zoom={16}
+        zoom={10}
         scrollWheelZoom={true}
         zoomControl={false}
         style={{
@@ -71,10 +76,10 @@ const MainMap = (props: MainMapProps) => {
         <TileLayer
           url={`${url}/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`}
           attribution="&copy; <a href='https://vworld.kr'>VWorld</a> contributors"
-          minZoom={13}
+          minZoom={8}
           maxZoom={20}
         />
-        <PoiMarker />
+        <PoiMarker handleMarkerClick={handleMarkerClick} />
         <MapCornerHandler />
         <MapMoveHandler />
         <MapMarker
@@ -84,7 +89,6 @@ const MainMap = (props: MainMapProps) => {
         />
         <MyLocationComponent />
         {/* 디자인에 따라 poi을 등록할 때 클릭하는 아이콘 추가 예정*/}
-        <PoiSave />
       </MapContainer>
     );
   } else {

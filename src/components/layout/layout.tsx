@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const withFooterPathnames = ['/', '/user', '/login', '/pois', '/my'];
 
   return (
-    <div className='flex flex-col items-center justify-center w-screen h-dvh min-h-screen bg-primary/10'>
+    <div className='flex h-dvh w-screen flex-col items-center justify-center bg-primary/10'>
       <div className='relative h-full w-full max-w-[375px] bg-white shadow-xl'>
         <Suspense fallback={<></>}>
           {pathname === '/' ? (
